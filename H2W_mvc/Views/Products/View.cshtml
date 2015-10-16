@@ -1,0 +1,54 @@
+﻿@model H2W_mvc.ViewModels.CategoryVM
+@using H2W_mvc.ViewModels;
+
+<script language="javascript" type="text/javascript">
+	function resetAll(){
+		$('#productInfo').hide();
+		$('#operatingInfo').hide();
+		$('#videos').hide();
+		$('#technical').hide();
+		$('#specifications').hide();
+		
+		$('#productInfoTab').removeClass('on');
+		$('#operatingInfoTab').removeClass('on');
+		$('#videosTab').removeClass('on');
+		$('#technicalTab').removeClass('on');
+		$('#specificationsTab').removeClass('on');
+	}
+	function show(what){
+		resetAll();
+		$('#'+what).show();
+		$('#'+what+'Tab').addClass('on');
+	}
+	
+	$(function() {
+		resetAll();
+		show('productInfo');
+	});
+</script>
+
+<h2>@Model.catrec.Name</h2>
+<div style="height:7px;"></div>
+
+<div id="productInfoTab" class="tab" onclick="show('productInfo');">Product Info</div>
+<div id="specificationsTab" class="tab" onclick="show('specifications');">Specifications</div>
+<div id="technicalTab" class="tab" onclick="show('technical');">Technical Data</div>
+<div id="operatingInfoTab" class="tab" onclick="show('operatingInfo');">Operating Info</div>
+<div id="videosTab" class="tab" onclick="show('videos');">Videos</div><br />
+<div id="tabContainer">
+    <div id="productInfo" class="subtab">
+        @Html.Partial("_CategoryInfo");
+    </div>
+    <div id="specifications" class="subtab">
+        @Html.Partial("_CategorySpecs")
+    </div>
+    <div id="technical" class="subtab">
+        @Html.Partial("_CategoryTechnicalData");
+    </div>
+    <div id="operatingInfo" class="subtab">
+        @Html.Partial("_CategoryOperatingInfo");
+    </div>
+    <div id="videos" class="subtab">
+        @Html.Partial("_CategoryVideos");
+    </div>
+</div><!--//tabContainer-->

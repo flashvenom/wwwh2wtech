@@ -1,0 +1,10 @@
+﻿<h2>500 Error!</h2>
+<div style="height:7px;"></div>
+@{
+    HttpContext.Current.Response.StatusCode = 404;
+    HttpContext.Current.Response.TrySkipIisCustomErrors = true;
+}
+
+<div id="pageContainer" class="pcBlueLinks">
+    We encountered a server error. If you need assitance, please contact us!
+</div>

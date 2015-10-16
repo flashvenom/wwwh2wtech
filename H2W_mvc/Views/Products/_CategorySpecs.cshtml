@@ -1,0 +1,106 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+@* ----------Motors-----------  *@
+
+@if(Model.catrec.CategoryId == 1) {
+    @Html.Partial("_SpecTable-VoiceCoil");
+}
+
+@if (Model.catrec.CategoryId == 2)
+{
+    @Html.Partial("_SpecTable-DCLinearBrushless");
+}
+
+@if (Model.catrec.CategoryId == 3)
+{
+    @Html.Partial("_SpecTable-DCLinearBrush");
+}
+
+@if (Model.catrec.CategoryId == 4)
+{
+    @Html.Partial("_SpecTable-Stepper");
+}
+
+@if (Model.catrec.CategoryId == 5)
+{
+    @Html.Partial("_SpecTable-DualStepper");
+}
+
+@if (Model.catrec.CategoryId == 6)
+{
+    @Html.Partial("_SpecTable-ACLinear");
+}
+
+@if (Model.catrec.CategoryId == 14)
+{
+    @Html.Partial("_SpecTable-LimitedAngle");
+}
+
+@if (Model.catrec.CategoryId == 21)
+{
+    @Html.Partial("_SpecTable-Polynoids");
+}
+
+@* ---------- Positioning Stages  -----------  *@
+
+@if(Model.catrec.CategoryId == 7) {
+    @Html.Partial("_SpecTable-VoiceCoilPositioningStages");
+}
+
+@if(Model.catrec.CategoryId == 8) {
+    @Html.Partial("_SpecTable-SingleRail");
+}
+
+@if(Model.catrec.CategoryId == 9) {
+    @Html.Partial("_SpecTable-DualRail");
+}
+
+@if(Model.catrec.CategoryId == 10) {
+    @Html.Partial("_SpecTable-AirBearing");
+}
+
+@if(Model.catrec.CategoryId == 11) {
+    @Html.Partial("_SpecTable-Belt");
+}
+
+@if(Model.catrec.CategoryId == 12) {
+    @Html.Partial("_SpecTable-CrossedRoller");
+}
+
+@if(Model.catrec.CategoryId == 17) {
+    @Html.Partial("_SpecTable-LinearStepperStages");
+}
+
+@* ---------- Short Bus  -----------  *@
+
+@if(Model.catrec.CategoryId == 13) {
+    <script type="text/javascript">
+        $(function () {
+            $('#specificationsTab').hide();
+            $('#divBtnFullList').hide();
+            
+        });
+    </script>
+}
+
+@if(Model.catrec.CategoryId == 15) {
+    <script type="text/javascript">
+        $(function () {
+            $('#specificationsTab').hide();
+            $('#technicalTab').hide();
+            $('#operatingInfoTab').hide();
+            $('#quickViewBox').hide();
+            $('#divBtnFullList').hide();
+        });
+    </script>
+}
+
+@if (Model.catrec.CategoryId == 11)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#specificationsTab').hide();
+            $('#divBtnFullList').hide();
+        });
+    </script>
+}

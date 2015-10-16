@@ -1,0 +1,21 @@
+﻿@using H2W_lib;
+@{
+    ViewBag.Title = "H2W current news and events ";    
+    List<tblNewsArticle> newslist = ViewBag.newslist;
+}
+<hgroup class="title">
+    <h1>@ViewBag.Message</h1>
+</hgroup>
+
+<article>
+    List of articles
+
+    @foreach (var item in newslist)
+    {
+   
+        @item.Title<br />
+        @item.PostedDate<br /><br />
+    
+    }
+   
+</article>

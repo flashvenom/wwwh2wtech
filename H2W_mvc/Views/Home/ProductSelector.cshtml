@@ -1,0 +1,125 @@
+﻿@using H2W_lib;
+@{
+    ViewBag.Title = "Linear Motor Product Selector";
+    ViewBag.Description = "H2W Technologies is a manufacturer of direct drive linear motors.  Our linear motor product selector can assist customers in selecting the ideal product. ";
+    ViewBag.Keywords = "linear motors, product selector, guide, help";
+}
+
+
+<h2 style="float:left;">Product Selector</h2><br clear="all" />
+<span style="color:#808080;">Answer a few simple questions to find the product that fits your needs...</span><br /><br />
+
+<article>
+   
+    <div id="step1">
+        <span class="quest">Do you require a stroke greater than 2 inches [50 mm]?</span><br /><br />
+        <div class="ynBtn" onclick="$('#step1').hide();$('#step2b').fadeIn('slow');">Yes</div>
+        <div class="ynBtn" onclick="$('#step1').hide();$('#step2a').fadeIn('slow');">No</div>
+    </div>
+
+    <div id="step2a" style="display:none">
+        <span class="quest">Is positioning required?</span><br /><br />
+        <div class="ynBtn" onclick="$('#step2a').hide();$('#vcsvms').fadeIn('slow');">Yes</div>
+        <div class="ynBtn" onclick="$('#step2a').hide();$('#step3a').fadeIn('slow');">No</div>
+    </div>
+
+    <div id="vcsvms" style="display:none">
+        <span class="quest">A potential solution for your needs is:</span><br />
+        <img src="~/Images/Voice-Coil-Logo2.jpg" onclick="window.location='../category/voice-coil-stages'" class="hrc" />
+    </div>
+
+    <div id="step3a" style="display:none">
+        <span class="quest">Is a seperate bearing system required?</span><br /><br />
+        <div class="ynBtn" onclick="$('#step3a').hide();$('#ncc').fadeIn('slow');">Yes</div>
+        <div class="ynBtn" onclick="$('#step3a').hide();$('#ncm').fadeIn('slow');">No</div>
+    </div>
+
+    <div id="ncc" style="display:none">
+        <span class="quest">A potential solution for your needs is:</span><br />
+        <img src="/Images/Voice-Coil-Actuator-Logo2.jpg" onclick="window.location = '../category/voice-coil-actuators'" class="hrc" /><br />
+        <a href="../category/voice-coil-actuators">NOTE: Model numbers starting with "NCC" have no supplied bearing system.</a>
+    </div>
+
+    <div id="ncm" style="display:none">
+        <span class="quest">The best product for your needs is:</span><br />
+        <img src="/Images/Voice-Coil-Actuator-Logo2.jpg" onclick="window.location = '../category/voice-coil-actuators'" class="hrc" /><br />
+        <a href="../category/voice-coil-actuators">NOTE: Only model numbers starting with "NCM" have internally supplied bearings.</a>
+    </div>
+
+    <div id="step2b" style="display:none">
+        <span class="quest">Is positioning required?</span><br /><br />
+        <div class="ynBtn" onclick="$('#step2b').hide();$('#step4b').fadeIn('slow');">Yes</div>
+        <div class="ynBtn" onclick="$('#step2b').hide();$('#step3b').fadeIn('slow');">No</div>
+    </div>
+
+    <div id="step3b" style="display:none">
+        <span class="quest">Is the required velocity greater than 200 inches/s [5 meters/s]?</span><br /><br />
+        <div class="ynBtn" onclick="$('#step3b').hide();$('#lim').fadeIn('slow');">Yes</div>
+        <div class="ynBtn" onclick="$('#step3b').hide();$('#brushbl').fadeIn('slow');">No</div>
+    </div>
+
+    <div id="lim" style="display:none">
+        <span class="quest">The best product for your needs is:</span><br />
+        <img src="~/Images/LIM--Logo2.jpg" onclick="window.location = '../category/linear-induction'" class="hrc" alt="AC Linear" />
+        
+    </div>
+
+    <div id="brushbl" style="display:none">
+        <span class="quest">The best product(s) for your needs are:</span><br />
+        <img src="/Images/Brushless-Logo2.jpg" onclick="window.location = '../category/brushless-linear'" class="hrc" />
+    </div>
+
+    <div id="step4b" style="display:none">
+        <span class="quest">Is the required acceleration greater than 1 g?</span><br /><br />
+        <div class="ynBtn" onclick="$('#step4b').hide();$('#stepPS').fadeIn('slow');">Yes</div>
+        <div class="ynBtn" onclick="$('#step4b').hide();$('#step5b').fadeIn('slow');">No</div>
+    </div>
+
+    <div id="step5b" style="display:none">
+        <span class="quest">Is the required force greater 20 lbs?</span><br /><br />
+        <div class="ynBtn" onclick="$('#step5b').hide();$('#stepPS').fadeIn('slow');">Yes</div>
+        <div class="ynBtn" onclick="$('#step5b').hide();$('#stepper').fadeIn('slow');">No</div>
+    </div>
+
+    <div id="stepper" style="display:none">
+        <span class="quest">The best product for your needs is:</span><br />
+        <img src="~/Images/Linear-Stepper-Logo2.jpg" onclick="window.location = '../category/single-axis-linear-stepper'" class="hrc" />
+        <img src="~/Images/HomeCategory_linearstepper.jpg" onclick="window.location = '../category/linear-stepper-stages'" class="hrc" />
+      
+    </div>
+
+    <div id="stepPS" style="display:none">
+        <span class="quest">Choose one of the following positioning stages:
+            Which of these characteristics is important to your application:</span><br /><br />
+        <div class="ynBtn sm" onclick="$('#stepPS').hide();$('#lsssr').fadeIn('slow');">Small Crosssection of light payload</div>
+        <div class="ynBtn sm" onclick="$('#stepPS').hide();$('#dr').fadeIn('slow');">Heavy Payload</div>
+        <div class="ynBtn sm" onclick="$('#stepPS').hide();$('#abxr').fadeIn('slow');">Flatness</div>
+        <div class="ynBtn sm" onclick="$('#stepPS').hide();$('#bl').fadeIn('slow');">Low Cost, High Velocity, High Travel</div>
+        
+    </div>
+
+    <div id="lsssr" style="display:none">
+        <span class="quest">The best product for your needs is:</span><br />
+        <img src="~/Images/HomeCategory_linearstepper.jpg" onclick="window.location = '../category/linear-stepper-stages'" class="hrc" />
+        <img src="~/Images/HomeCategory_singlerail.jpg" onclick="window.location = '../category/single-rail-stages'" class="hrc" />
+    </div>
+
+    <div id="dr" style="display:none">
+        <span class="quest">The best product for your needs is:</span><br />
+        <img src="~/Images/HomeCategory_dualrail.jpg" onclick="window.location = '../category/dual-rail-stages'" class="hrc" />
+    </div>
+
+    <div id="abxr" style="display:none">
+        <span class="quest">The best product for your needs is:</span><br />
+            <img src="~/Images/HomeCategory_airbearing.jpg" onclick="window.location = '../category/air-bearing-stages'" class="hrc" />
+            <img src="~/Images/HomeCategory_crossedroller.jpg" onclick="window.location = '../category/crossed-roller-stages'" class="hrc" />
+    </div>
+
+    <div id="bl" style="display:none">
+        <span class="quest">The best product for your needs is:</span><br />
+        <img src="~/Images/HomeCategory_beltstages.jpg" onclick="window.location = '../category/belt-stages'" class="hrc" />
+    </div>
+
+   
+</article>
+<div style="height:15px; clear:both;"></div>

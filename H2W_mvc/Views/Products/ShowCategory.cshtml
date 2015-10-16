@@ -1,0 +1,339 @@
+﻿@model H2W_mvc.ViewModels.CategoryVM
+@using H2W_mvc.ViewModels;
+<link type="text/css" href="http://www.zachstronaut.com/posts/jquery-ui-tabs/css/smoothness/jquery-ui-1.7.1.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="http://www.zachstronaut.com/posts/jquery-ui-tabs/js/jquery-ui-1.7.1.custom.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function resetAll() {
+        $('#productInfo').hide();
+        $('#operatingInfo').hide();
+        $('#videos').hide();
+        $('#technical').hide();
+        $('#specifications').hide();
+
+        $('#productInfoTab').removeClass('on');
+        $('#operatingInfoTab').removeClass('on');
+        $('#videosTab').removeClass('on');
+        $('#technicalTab').removeClass('on');
+        $('#specificationsTab').removeClass('on');
+    }
+    function show(what) {
+        resetAll();
+        $('#' + what).show();
+        $('#' + what + 'Tab').addClass('on');
+        location.hash = what + "1";
+    }
+
+    $(function () {
+        initload = true;
+
+        if (location.hash == "#specifications1") {
+            show('specifications');
+            initload = false;
+        }
+        if (location.hash == "#technical1") {
+            show('technical');
+            initload = false;
+        }
+        if (location.hash == "#operatingInfo1") {
+            show('operatingInfo');
+            initload = false;
+        }
+        if (location.hash == "#videos1") {
+            show('videos');
+            initload = false;
+        }
+
+        if (location.hash == "#tab1") {
+            show('videos');
+            initload = false;
+        }
+
+        if (location.hash == "#tab2") {
+            show('videos');
+            initload = false;
+        }
+
+        if (location.hash == "#vcsbox1") {
+            switchToVms();
+            initload = false;
+        }
+
+        if (location.hash == "#vmsbox1") {
+            switchToVms();
+            initload = false;
+        }
+
+
+        if (location.hash == "#bldbox1") {
+            show('specifications');
+            initload = false;
+        }
+
+        if (location.hash == "#blsbox1") {
+            show('specifications');
+            switchToBls();
+            initload = false;
+        }
+
+        if (location.hash == "#bldmagbox1") {
+            show('specifications');
+            switchToBldMag();
+            initload = false;
+        }
+
+        if (location.hash == "#blsmagbox1") {
+            show('specifications');
+            switchToBlsMag();
+            initload = false;
+        }
+
+
+
+
+        if (location.hash == "#nccbox1") {
+            show('specifications');
+            initload = false;
+        }
+
+        if (location.hash == "#ncmbox1") {
+            show('specifications');
+            switchToNcm();
+            initload = false;
+        }
+
+        if (location.hash == "#vcsbox1") {
+            show('specifications');
+            initload = false;
+        }
+
+        if (location.hash == "#vmsbox1") {
+            show('specifications');
+            switchToVms();
+            initload = false;
+        }
+
+        if (location.hash == "#platensbox1") {
+            show('specifications');
+            switchToPlatens();
+            initload = false;
+        }
+
+        if (location.hash == "#forcersbox1") {
+            show('specifications');
+            switchToForcers();
+            initload = false;
+        }
+
+        
+       
+
+
+
+        if (initload == true) {
+            show('productInfo');
+            initload = false;
+        }
+
+        $(window).hashchange(hashchanged);
+    });
+
+    function hashchanged() {
+        if (location.hash == "#specifications1") {
+            //If nccbox1 exists, show it
+            if (document.getElementById("nccbox") !== null) {
+                resetAll();
+                $('#specifications').show();
+                $('#specificationsTab').addClass('on');
+                $('#ncmbox').fadeOut('fast', function () {
+                    $('#nccbox').fadeIn('fast');
+                    $('#ncmSelect').removeClass('boxSelectOn');
+                    $('#ncmSelect').addClass('boxSelectOff');
+                    $('#nccSelect').removeClass('boxSelectOff');
+                    $('#nccSelect').addClass('boxSelectOn');
+                });
+                initload = false;
+            } else if (document.getElementById("bldbox") !== null) {
+                
+
+
+
+               
+            } else {
+                show('specifications');
+                initload = false;
+            }
+
+            //if (document.getElementById("bldbox") !== null) {
+            //    console.log('3');
+            //    
+            //}
+
+            //if (document.getElementById("vcsbox") !== null) {
+            //    console.log('3');
+            //    $('#specifications').show();
+            //    $('#specificationsTab').addClass('on');
+            //    $('#vmsbox').fadeOut('fast', function () {
+            //        $('#vcsbox').fadeIn('fast');
+            //        $('#vmsSelect').removeClass('boxSelectOn');
+            //        $('#vmsSelect').addClass('boxSelectOff');
+            //        $('#vcsSelect').removeClass('boxSelectOff');
+            //        $('#vcsSelect').addClass('boxSelectOn');
+            //    });
+            //    initload = false;
+            //}
+
+            
+        }
+        if (location.hash == "#technical1") {
+            show('technical');
+            initload = false;
+        }
+        if (location.hash == "#operatingInfo1") {
+            show('operatingInfo');
+            initload = false;
+        }
+        if (location.hash == "#videos1") {
+            show('videos');
+            initload = false;
+        }
+        if (location.hash == "#productInfo1") {
+            show('productInfo');
+            initload = false;
+        }
+
+        
+
+        if (location.hash == "#vcsbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            $('#vmsbox').fadeOut('fast', function () {
+                $('#vcsbox').fadeIn('fast');
+                $('#vmsSelect').removeClass('boxSelectOn');
+                $('#vmsSelect').addClass('boxSelectOff');
+                $('#vcsSelect').removeClass('boxSelectOff');
+                $('#vcsSelect').addClass('boxSelectOn');
+            });
+            initload = false;
+        }
+        if (location.hash == "#vmsbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            $('#vcsbox').fadeOut('fast', function () {
+                $('#vmsbox').fadeIn('fast');
+                $('#vmsSelect').addClass('boxSelectOn')
+                $('#vmsSelect').removeClass('boxSelectOff');
+                $('#vcsSelect').addClass('boxSelectOff');
+                $('#vcsSelect').removeClass('boxSelectOn');
+            });
+            initload = false;
+        }
+    
+
+        if (location.hash == "#bldbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            switchToBld();
+            initload = false;
+        }
+        if (location.hash == "#blsbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            switchToBls();
+            initload = false;
+        }
+        if (location.hash == "#blsmagbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            switchToBlsMag();
+            initload = false;
+        }
+
+        if (location.hash == "#bldmagbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            switchToBldMag();
+            initload = false;
+        }
+        
+
+        if (location.hash == "#ncmbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            $('#nccbox').fadeOut('fast', function () {
+                $('#ncmbox').fadeIn('fast');
+                $('#nccSelect').removeClass('boxSelectOn');
+                $('#nccSelect').addClass('boxSelectOff');
+                $('#ncmSelect').removeClass('boxSelectOff');
+                $('#ncmSelect').addClass('boxSelectOn');
+            });
+            initload = false;
+        }
+        if (location.hash == "#nccbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+            $('#ncmbox').fadeOut('fast', function () {
+                $('#nccbox').fadeIn('fast');
+                $('#ncmSelect').removeClass('boxSelectOn');
+                $('#ncmSelect').addClass('boxSelectOff');
+                $('#nccSelect').removeClass('boxSelectOff');
+                $('#nccSelect').addClass('boxSelectOn');
+            });
+            initload = false;
+        }
+
+        if (location.hash == "#platensbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+
+            switchToPlatens();
+            initload = false;
+        }
+
+        if (location.hash == "#forcersbox1") {
+            $('#specifications').show();
+            $('#specificationsTab').addClass('on');
+
+            switchToForcers();
+            initload = false;
+        }
+
+
+
+        if (initload == true) {
+            show('productInfo');
+            initload = false;
+        }
+    }
+
+
+    (function ($, e, b) { var c = "hashchange", h = document, f, g = $.event.special, i = h.documentMode, d = "on" + c in e && (i === b || i > 7); function a(j) { j = j || location.href; return "#" + j.replace(/^[^#]*#?(.*)$/, "$1") } $.fn[c] = function (j) { return j ? this.bind(c, j) : this.trigger(c) }; $.fn[c].delay = 50; g[c] = $.extend(g[c], { setup: function () { if (d) { return false } $(f.start) }, teardown: function () { if (d) { return false } $(f.stop) } }); f = (function () { var j = {}, p, m = a(), k = function (q) { return q }, l = k, o = k; j.start = function () { p || n() }; j.stop = function () { p && clearTimeout(p); p = b }; function n() { var r = a(), q = o(m); if (r !== m) { l(m = r, q); $(e).trigger(c) } else { if (q !== m) { location.href = location.href.replace(/#.*/, "") + q } } p = setTimeout(n, $.fn[c].delay) } $.browser.msie && !d && (function () { var q, r; j.start = function () { if (!q) { r = $.fn[c].src; r = r && r + a(); q = $('<iframe tabindex="-1" title="empty"/>').hide().one("load", function () { r || l(a()); n() }).attr("src", r || "javascript:0").insertAfter("body")[0].contentWindow; h.onpropertychange = function () { try { if (event.propertyName === "title") { q.document.title = h.title } } catch (s) { } } } }; j.stop = k; o = function () { return a(q.location.href) }; l = function (v, s) { var u = q.document, t = $.fn[c].domain; if (v !== s) { u.title = h.title; u.open(); t && u.write('<script>document.domain="' + t + '"<\/script>'); u.close(); q.location.hash = v } } })(); return j })() })(jQuery, this);
+</script>
+
+
+<h2>@Model.catrec.Name</h2>
+<div style="height:7px;"></div>
+
+<div id="productInfoTab" class="tab on" onclick="show('productInfo');">Overview</div>
+<div id="specificationsTab" class="tab" onclick="show('specifications');">Products</div>
+<div id="technicalTab" class="tab" onclick="show('technical');">Technical Data</div>
+<div id="operatingInfoTab" class="tab" onclick="show('operatingInfo');">Operating Info</div>
+<div id="videosTab" class="tab" onclick="show('videos');">Videos</div><br />
+<div id="tabContainer">
+    <div id="productInfo" class="subtab">
+        @Html.Partial("_CategoryInfo")
+    </div>
+    <div id="specifications" class="subtab">
+        This is only a partial listing of products; other sizes, forces and strokes are available. We also specialize in custom designs to meet your specifications. Please contact H2W for more information.<br />
+        @Html.Partial("_CategorySpecs")
+        <div style="height:4px; clear:both;"></div>
+    </div>
+    <div id="technical" class="subtab">
+        @Html.Partial("_CategoryTechnicalData")
+    </div>
+    <div id="operatingInfo" class="subtab">
+        @Html.Partial("_CategoryOperatingInfo")
+    </div>
+    <div id="videos" class="subtab">
+        @Html.Partial("_CategoryVideos")
+    </div>
+</div><!--//tabContainer-->

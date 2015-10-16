@@ -1,0 +1,39 @@
+﻿@model IEnumerable<H2W_lib.tblText>
+
+@Html.Partial("_AdminMenu")
+
+<h2>Pages</h2>
+
+<table class="adminTable">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Page
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if(item.pageId.HasValue == true){
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.section)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID })
+            </td>
+        </tr>
+    }
+}
+
+</table>
+<br />
+
+@Html.ActionLink("Create New Page", "Create") 

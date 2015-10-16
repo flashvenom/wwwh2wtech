@@ -1,0 +1,9 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+
+@foreach (var item in Model.textAreas) {
+    if (item.section == "videos"){
+        @Html.Raw(item.html)
+    }
+}
+

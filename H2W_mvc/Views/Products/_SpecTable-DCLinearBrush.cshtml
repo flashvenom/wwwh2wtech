@@ -1,0 +1,119 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+<table class="specTable">
+    <thead>
+    <tr style="background-color:#eee;">
+        <th>Model #</th>
+        <th>Thumbnail</th>
+        <th>Force Constant</th>
+        <th>Force @@ 100% Duty</th>
+        <th>Force @@ 10% Duty</th>
+        <th>Current @@ 100% Duty</th>
+        <th>Current @@ 10% Duty</th>
+        <th>Resistance @@ 20C</th>
+        <th>Length</th>
+        <th>Weight</th>
+        <th>PDF</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.products) {
+        <tr style="border-bottom:1px solid #ccc;">
+            <td>
+                @Html.ActionLink(item.ProductNo, "show", "product", new { category = item.tblCategory.CategoryPageUrl, productid = item.ProductNo }, null)
+            </td>
+            <td>
+                <a href="../product/@item.tblCategory.CategoryPageUrl/@item.ProductNo">
+                    @{
+                        if (item.ThumbnailPath == null)
+                        {
+                            <img src="/Images/Thumbnails/noimage.gif" />
+                        }
+                        else
+                        {
+                            if (item.ThumbnailPath.Length != 0)
+                            {
+                                <img src="@item.ThumbnailPath" />
+                            }
+                            else
+                            {
+                                <img src="/Images/Thumbnails/noimage.gif" />
+                            }
+                        }
+                    }
+                </a>
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 58).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 58).FirstOrDefault().tblCategorySpecificSpec.Units1
+                <div class="specLine"></div>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 58).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 58).FirstOrDefault().tblCategorySpecificSpec.Units2
+                
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 56).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 56).FirstOrDefault().tblCategorySpecificSpec.Units1
+                <div class="specLine"></div>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 56).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 56).FirstOrDefault().tblCategorySpecificSpec.Units2
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 57).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 57).FirstOrDefault().tblCategorySpecificSpec.Units1
+                <div class="specLine"></div>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 57).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 57).FirstOrDefault().tblCategorySpecificSpec.Units2
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 1289).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 1289).FirstOrDefault().tblCategorySpecificSpec.Units1
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 1290).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 1290).FirstOrDefault().tblCategorySpecificSpec.Units1
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 61).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 61).FirstOrDefault().tblCategorySpecificSpec.Units1
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 63).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 63).FirstOrDefault().tblCategorySpecificSpec.Units1
+                <div class="specLine"></div>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 63).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 63).FirstOrDefault().tblCategorySpecificSpec.Units2
+            </td>
+            <td>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 62).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 62).FirstOrDefault().tblCategorySpecificSpec.Units1
+                <div class="specLine"></div>
+                @item.tblProductSpecs.Where(c => c.CatSpecId == 62).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 62).FirstOrDefault().tblCategorySpecificSpec.Units2
+            </td>
+             <td valign="center">
+                @{
+                    if (item.PDFDoc != null){
+                        if (item.PDFDoc.Length > 0){
+                            <a href="@item.PDFDoc" target="_blank">
+                                <img src="~/Images/pdficon.png" />
+                            </a>
+                        }
+                    }
+                }
+            </td>
+        </tr>
+
+    }
+    </tbody>
+</table>
+
+<link href="/Content/dataTables.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.datatables.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.specTable').dataTable({
+        "bPaginate": false,
+        "aoColumns": [
+                null,
+                null,
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                null,
+                null,
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                null
+        ]
+    });
+});
+</script>

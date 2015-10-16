@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Application Worksheets";
+}
+
+
+<h2>Application Worksheets</h2>
+<div style="height:7px; clear:both;"></div>
+
+<div id="pageContainer">
+    <img src="~/Images/appWorksheets.jpg" align="right" />
+    <span style="font-size:20px;">These applications will help you find the right product, obtain help and advice from a H2W engineer, request a quote and place an order.</span>
+    <br /><br />
+
+    <span style="font-size:17px; line-height:32px;">
+        <img src="~/Images/clipboard.png" style="position:relative;top:4px;" />@Html.ActionLink("Linear Motors Product Sizing Worksheet", "LinearMotorsWorksheet", "Forms")<br />
+        <img src="~/Images/clipboard.png" style="position:relative;top:4px;" />@Html.ActionLink("Rotary Motors Product Sizing Worksheet", "RotaryMotorsWorksheet", "Forms")<br />
+        <img src="~/Images/clipboard.png" style="position:relative;top:4px;" />@Html.ActionLink("Positioning Stages Product Sizing Worksheet", "PositioningStagesWorksheet", "Forms")<br />
+        <img src="~/Images/clipboard.png" style="position:relative;top:4px;" /><a href="~/Content/Credit%20Card%20Authorization%20Form.pdf">Credit Card Authorization PDF</a><br />
+        <img src="~/Images/clipboard.png" style="position:relative;top:4px;" />@Html.ActionLink("Request for Quote Form", "RequestForQuoteForm", "Forms")<br />
+    </span>
+    <br />
+    We'd to love to talk to you! @Html.ActionLink("Click here for our contact info.", "Show", "Pages", new { pageid = "11" }, null)
+        <div style="clear:both"></div>
+    
+</div><!--//tabContainer-->

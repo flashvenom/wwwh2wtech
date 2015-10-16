@@ -1,0 +1,38 @@
+﻿@using H2W_lib;
+@{
+    List<tblNewsArticle> newslist = ViewBag.newslist;
+    ViewBag.Title = "H2W Current Events and News";
+}
+<hgroup class="title">
+    <h1>Company News</h1>
+</hgroup>
+
+
+    <div style="width:650px; overflow:hidden; float:left;">
+
+    @foreach (var item in newslist)
+    {
+        <div style="float:left; width:100px;">
+            @String.Format("{0:d}", item.PostedDate)
+        </div>
+        
+        <div style="float:left; width:510px; overflow:hidden;">
+            <a href="../article/@item.slug">@item.Title</a>
+          
+        </div>                                  
+        <br clear="all" />
+    
+    }
+
+    </div>
+    <div style="width:300px; float:left;">
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=375541659163870";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="fb-like-box" data-href="http://www.facebook.com/h2wtech" data-width="300" data-height="550" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true" data-force-wall="true"></div>
+    </div>

@@ -1,0 +1,286 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+<div style="clear:both; height:10px;"></div>
+<div style="width:100%; background-color:#808080; height:25px;">
+    <span id="nccSelect" class="boxSelectOn p" onclick="switchToNcc()">Moving Coil - No Supplied Bearing System</span> 
+    <span id="ncmSelect" class="boxSelectOff p" onclick="switchToNcm()">Moving Magnet - Internally Supplied Bearings</span>
+</div>
+
+<div style="border-left:2px solid #808080; border-right:2px solid #808080; border-bottom:7px solid #808080;">
+
+<div id="nccbox">
+<table class="specTable">
+    <thead>
+    <tr style="background-color:#eee;">
+        <th>Model #</th>
+        <th>Thumbnail</th>
+        <th class="opt">Stroke</th>
+        <th class="opt">Force @@100% Duty</th>
+        <th class="opt">Force @@ 10% Duty</th>
+        <th class="opt">Motor Constant</th>
+        <th class="opt">Moving Mass</th>
+        <!--<th>Total Mass</th>-->
+        <th class="opt">Outside Diameter</th>
+        <th class="opt">Housing Length</th>
+        <th>PDF</th>
+        <th class="opt">Quick Ship</th>
+    </tr>
+        </thead>
+    <tbody>
+    @foreach (var item in Model.products) {
+        if (item.ProductNo.Substring(0, 3).Equals("NCC")){
+            <tr style="border-bottom:1px solid #ccc;">
+                <td>
+                   @Html.ActionLink(item.ProductNo, "show", "product", new { category = item.tblCategory.CategoryPageUrl, productid = item.ProductNo }, null)
+                </td>
+                <td>
+                    <a href="../product/@item.tblCategory.CategoryPageUrl/@item.ProductNo">
+                    @{
+                        if(item.ThumbnailPath == null){
+                            <img src="/Images/Thumbnails/noimage.gif" />
+                        }else{
+                            if (item.ThumbnailPath.Length != 0)
+                            {
+                                <img src="@item.ThumbnailPath" />
+                            }else{
+                                <img src="/Images/Thumbnails/noimage.gif" />
+                            }
+                        }
+                    }
+                   </a>
+                </td>
+                <td class="opt">
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().tblCategorySpecificSpec.Units2
+
+                </td>
+                <td class="opt">
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td class="opt">
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td class="opt">
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td class="opt">
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <!--<td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>-->
+                <td class="opt">
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td class="opt">
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                 <td valign="center">
+                    @{
+                        if (item.PDFDoc != null){
+                            if (item.PDFDoc.Length > 0){
+                                <a href="@item.PDFDoc" target="_blank">
+                                    <img src="~/Images/pdficon.png" />
+                                </a>
+                            }
+                        }
+                    }
+                </td>
+                <td class="opt">
+                    @{
+                        if(item.QuickShip == true){
+                            <span style="display:none;">1</span><img src="~/Images/qs_yes.gif" alt="Quick Ship items usually ship within 48 hours" />
+                        }
+                        else
+                        {
+                            <span style="display:none;">0</span><img src="~/Images/qs_no.gif" />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+</div><!--/nccbox-->
+
+<div id="ncmbox" style="display:none;">
+<table class="specTable">
+    <thead>
+    <tr style="background-color:#eee;">
+        <th>Model #</th>
+        <th>Thumbnail</th>
+        <th>Stroke</th>
+        <th>Continuous Force</th>
+        <th>Peak Force</th>
+        <th>Motor Constant</th>
+        <th>Moving Mass</th>
+        <!--<th>Total Mass</th>-->
+        <th>Outside Diameter</th>
+        <th>Housing Length</th>
+        <th>PDF</th>
+        <th>Quick Ship</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.products)
+    {
+        if (item.ProductNo.Substring(0, 3) == "NCM")
+        {
+            <tr style="border-bottom:1px solid #ccc;">
+                <td>
+                    @Html.ActionLink(item.ProductNo, "show", "product", new { category = item.tblCategory.CategoryPageUrl, productid = item.ProductNo }, null)
+                </td>
+                <td>
+                    <a href="../product/@item.tblCategory.CategoryPageUrl/@item.ProductNo">
+                        @{
+                            if (item.ThumbnailPath == null)
+                            {
+                                <img src="/Images/Thumbnails/noimage.gif" />
+                            }
+                            else
+                            {
+                                if (item.ThumbnailPath.Length != 0)
+                                {
+                                    <img src="@item.ThumbnailPath" />
+                                }
+                                else
+                                {
+                                    <img src="/Images/Thumbnails/noimage.gif" />
+                                }
+                            }
+                        }
+                   </a>
+                </td>
+                <td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().tblCategorySpecificSpec.Units2
+                
+                </td>
+                <td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <!--<td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>-->
+                <td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                <td>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().tblCategorySpecificSpec.Units1
+                    <div class="specLine"></div>
+                    @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().tblCategorySpecificSpec.Units2
+                </td>
+                 <td valign="center">
+                    @{
+            if (item.PDFDoc != null)
+            {
+                if (item.PDFDoc.Length > 0)
+                {
+                                <a href="@item.PDFDoc" target="_blank">
+                                    <img src="~/Images/pdficon.png" />
+                                </a>
+                }
+            }
+                    }
+                </td>
+                <td>
+                    @{
+            if (item.QuickShip == true)
+            {
+                            <span style="display:none;">1</span><img src="~/Images/qs_yes.gif" alt="Quick Ship items usually ship within 48 hours" />
+            }
+            else
+            {
+                            <span style="display:none;">0</span><img src="~/Images/qs_no.gif" />
+            }
+                    }
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+</div><!--/ncmbox-->
+</div><!--/(innerTabGreyBorder)-->
+<link href="/Content/dataTables.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.datatables.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.specTable').dataTable({
+        "bPaginate": false,
+        "aoColumns": [
+                null,
+                null,
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                null,
+                null
+        ]
+    });
+});
+
+function switchToNcc() {
+    $('#ncmbox').fadeOut('fast', function () {
+        $('#nccbox').fadeIn('fast');
+        $('#nccSelect').addClass('boxSelectOn');
+        $('#nccSelect').removeClass('boxSelectOff');
+        $('#ncmSelect').addClass('boxSelectOff')
+        $('#ncmSelect').removeClass('boxSelectOn');
+        location.hash = "nccbox1";
+    });
+}
+
+function switchToNcm() {
+    $('#nccbox').fadeOut('fast', function () {
+        $('#ncmbox').fadeIn('fast');
+        $('#ncmSelect').addClass('boxSelectOn')
+        $('#ncmSelect').removeClass('boxSelectOff');
+        $('#nccSelect').addClass('boxSelectOff');
+        $('#nccSelect').removeClass('boxSelectOn');
+        location.hash = "ncmbox1";
+    });
+}
+</script>

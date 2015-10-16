@@ -1,0 +1,60 @@
+﻿@model H2W_lib.tblText
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>tblText</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.categoryId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.categoryId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.productId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.productId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.section)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.section)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.html)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.html)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.datemodified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.datemodified)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.staffmodified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.staffmodified)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

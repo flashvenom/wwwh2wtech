@@ -1,0 +1,85 @@
+﻿@using H2W_lib;
+@{
+    ViewBag.Title = "Linear Motors - Voice Coils - Motion Control";
+    ViewBag.Description = "H2W Technologies is a manufacturer of linear motors and positioning stages, which include: voice coils actuators, brushless linear motors, limited angle torque motors, linear induction motors, linear stepper motors, and multi-axis gantry systems.";
+    ViewBag.Keywords = "linear motors, voice coils, positioning stages, brushless linear motors, ironless, iron core, linear stepper motors, multi-axis gantry systems, motion control, mechatronics, polynoids, linear induction motors, limited angle torque motors";
+}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.slideshow').cycle({
+		fx: 'fade'
+	});
+});
+</script>
+
+<div id="homeLeftCol" style="float:left;">
+
+    <div class="homeNavBtn" onclick="window.location='Home/ProductSelector'">
+        <strong>Product Selector</strong><br />
+        A step-by-step guide to selecting
+        the right H2W product.
+    </div>
+
+    <div class="homeNavBtn" onclick="window.location = '/page/application-worksheets'">
+        <strong>Application Worksheets</strong><br />
+        Enter your specifics and let us
+        find or design your solution.
+    </div>
+
+    <div class="homeNavBtn" onclick="window.location='/Forms/RequestForQuoteForm'">
+        <strong>Request a Quote</strong><br />
+        Click here to get a fast, free,
+        no-obligation quote.
+    </div>
+
+    <div id="homeNews">
+        <span style="font-size:20px; font-weight:bold; color:#808080;">Company News</span><br />
+        @{
+            List<tblNewsArticle> newslist = ViewBag.newslist;
+            foreach (var item in newslist)
+            {
+                
+                <span style="font-size:13px; font-weight:bold;">@item.Title</span><br />
+                <span style="font-size:10px;">@item.PostedDate</span><br />
+                    @item.Caption
+                <br />
+                <a href="article/@item.slug">Read More...</a>
+                <br /><br />
+            }
+        }
+
+        <a href="http://visitor.r20.constantcontact.com/d.jsp?llr=a4lo4tcab&amp;p=oi&amp;m=1102329622496&amp;sit=ggjkw8wdb&amp;f=0f623b40-3a91-482f-8560-b6337080afbc" target="_blank"><img src="~/Images/newsletter.png" border="0" /></a>
+
+    </div>
+
+    
+
+</div>
+
+<div id="homeRightCol" style="">
+    <div class="slideshow">
+        <img src="~/Images/MovedBanner.jpg" width="724" height="176" />
+        <img src="~/Images/HomeBanner1.jpg" width="724" height="176" />
+        <img src="~/Images/HomeBanner2.jpg" width="724" height="176" />
+        <img src="~/Images/HomeBanner3.jpg" width="724" height="176" />
+        <img src="~/Images/HomeBanner4.jpg" width="724" height="176" />
+    </div>
+    <img src="~/Images/underBanner.jpg" />
+
+    @{
+        int myStep = 1;
+        List<tblCategory> featlist = ViewBag.featlist;
+        foreach (var item in featlist)
+        {
+            <a href="/category/@item.tblCategory1.CategoryPageUrl"><img src="@item.FeaturedThumbnail" class="hrc" border="0" /></a>
+            if(myStep < 4){
+                <div class="spc">&nbsp;</div>
+                myStep++;
+            }else{
+                <div class="clr">&nbsp;</div>
+                myStep = 1;
+            }
+        }
+            
+    }
+</div>

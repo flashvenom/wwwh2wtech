@@ -1,0 +1,9 @@
+﻿@model H2W_mvc.ViewModels.PagesVM
+@using H2W_mvc.ViewModels;
+
+<h2>@Model.textrec.section</h2>
+<div style="height:7px;"></div>
+
+<div id="pageContainer" class="pcBlueLinks">
+    @Html.Raw(Model.textrec.html)
+</div>

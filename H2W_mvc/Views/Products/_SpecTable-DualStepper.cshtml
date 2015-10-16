@@ -1,0 +1,219 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+<div style="clear:both; height:10px;"></div>
+<div style="width:100%; background-color:#808080; height:25px;">
+    <span id="forcersSelect" class="boxSelectOn p" onclick="switchToForcers()">Forcers</span>
+    <span id="platensSelect" class="boxSelectOff p" onclick="switchToPlatens()">Platens</span>
+</div>
+
+<div id="dualContain" style="border-left:2px solid #808080; border-right:2px solid #808080; border-bottom:7px solid #808080;">
+    <div id="forcersbox">
+        <table class="specTable">
+            <thead>
+                <tr style="background-color:#eee;">
+                    <th>Model #</th>
+                    <th>Thumbnail</th>
+                    <th>Force</th>
+                    <th>Current</th>
+                    <th>Bearing Type</th>
+                    <th># Phases</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.products)
+                {
+                    if (item.ProductNo.Substring(0, 4) == "LMDS")
+                    {
+                    <tr style="border-bottom:1px solid #ccc;">
+                        <td>
+                            @Html.ActionLink(item.ProductNo, "show", "product", new { category = item.tblCategory.CategoryPageUrl, productid = item.ProductNo }, null)
+                        </td>
+                        <td>
+                            <a href="../product/@item.tblCategory.CategoryPageUrl/@item.ProductNo">
+                                @{
+                                    if (item.ThumbnailPath == null)
+                                    {
+                                        <img src="/Images/Thumbnails/noimage.gif" />
+                                    }
+                                    else
+                                    {
+                                        if (item.ThumbnailPath.Length != 0)
+                                        {
+                                            <img src="@item.ThumbnailPath" />
+                                        }
+                                        else
+                                        {
+                                            <img src="/Images/Thumbnails/noimage.gif" />
+                                        }
+                                    }
+                                }
+                            </a>
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 152).FirstOrDefault().SpecValue1
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 152).FirstOrDefault().tblCategorySpecificSpec.Units1
+                            <div class="specLine"></div>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 152).FirstOrDefault().SpecValue2
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 152).FirstOrDefault().tblCategorySpecificSpec.Units2
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 153).FirstOrDefault().SpecValue1
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 153).FirstOrDefault().tblCategorySpecificSpec.Units1
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 76).FirstOrDefault().SpecValue1
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 151).FirstOrDefault().SpecValue1
+                        </td>
+                        <td valign="center">
+                            @{
+                                if (item.PDFDoc != null)
+                                {
+                                    if (item.PDFDoc.Length > 0)
+                                    {
+                                        <a href="@item.PDFDoc" target="_blank">
+                                            <img src="~/Images/pdficon.png" />
+                                        </a>
+                                    }
+                                }
+                            }
+                        </td>
+                    </tr>
+                                    }
+                                }
+            </tbody>
+        </table>
+    </div><!--/focerContain-->
+    <div id="platensbox" style="display:none;">
+        <table class="specTable2">
+            <thead>
+                <tr style="background-color:#eee;">
+                    <th>Model #</th>
+                    <th>Thumbnail</th>
+                    <th>Length</th>
+                    <th>Width</th>
+                    <th>Thickness</th>
+                    <th>Weight</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.products)
+                {
+                    if (item.ProductNo.Substring(0, 4) == "LTDS")
+                    {
+                    <tr style="border-bottom:1px solid #ccc;">
+                        <td>
+                            @Html.ActionLink(item.ProductNo, "show", "product", new { category = item.tblCategory.CategoryPageUrl, productid = item.ProductNo }, null)
+                        </td>
+                        <td>
+                            <a href="../product/@item.tblCategory.CategoryPageUrl/@item.ProductNo">
+                                @{
+                                    if (item.ThumbnailPath == null)
+                                    {
+                                        <img src="/Images/Thumbnails/noimage.gif" />
+                                    }
+                                    else
+                                    {
+                                        if (item.ThumbnailPath.Length != 0)
+                                        {
+                                            <img src="@item.ThumbnailPath" />
+                                        }
+                                        else
+                                        {
+                                            <img src="/Images/Thumbnails/noimage.gif" />
+                                        }
+                                    }
+                                }
+                            </a>
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1325).FirstOrDefault().SpecValue1
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1325).FirstOrDefault().tblCategorySpecificSpec.Units1
+                            <div class="specLine"></div>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1325).FirstOrDefault().SpecValue2
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1325).FirstOrDefault().tblCategorySpecificSpec.Units2
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1326).FirstOrDefault().SpecValue1
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1326).FirstOrDefault().tblCategorySpecificSpec.Units1
+                            <div class="specLine"></div>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1326).FirstOrDefault().SpecValue2
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1326).FirstOrDefault().tblCategorySpecificSpec.Units2
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1327).FirstOrDefault().SpecValue1
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1327).FirstOrDefault().tblCategorySpecificSpec.Units1
+                            <div class="specLine"></div>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1327).FirstOrDefault().SpecValue2
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1327).FirstOrDefault().tblCategorySpecificSpec.Units2
+                        </td>
+                        <td>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1328).FirstOrDefault().SpecValue1
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1328).FirstOrDefault().tblCategorySpecificSpec.Units1
+                            <div class="specLine"></div>
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1328).FirstOrDefault().SpecValue2
+                            @item.tblProductSpecs.Where(c => c.CatSpecId == 1328).FirstOrDefault().tblCategorySpecificSpec.Units2
+                        </td>
+                        <td valign="center">
+                            @{
+                                if (item.PDFDoc != null)
+                                {
+                                    if (item.PDFDoc.Length > 0)
+                                    {
+                                        <a href="@item.PDFDoc" target="_blank">
+                                            <img src="~/Images/pdficon.png" />
+                                        </a>
+                                    }
+                                }
+                            }
+                        </td>
+                    </tr>
+                                    }
+                                }
+            </tbody>
+        </table>
+    </div><!--/platenbox-->
+
+
+</div><!--/dualContain-->
+
+   
+<link href="/Content/dataTables.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.datatables.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.specTable').dataTable({ "bPaginate": false });
+        $('.specTable2').dataTable({ "bPaginate": false });
+    });
+
+
+    function switchToForcers() {
+        $('#platensbox').hide();
+        $('#platensSelect').addClass('boxSelectOff');
+        $('#platensSelect').removeClass('boxSelectOn');
+
+        $('#forcersbox').fadeIn('fast');
+        $('#forcersSelect').addClass('boxSelectOn')
+        $('#forcersSelect').removeClass('boxSelectOff');
+
+        location.hash = "forcersbox1";
+    }
+
+    function switchToPlatens() {
+        $('#forcersbox').hide();
+        $('#forcersSelect').addClass('boxSelectOff')
+        $('#forcersSelect').removeClass('boxSelectOn');
+
+        $('#platensbox').fadeIn('fast');
+        $('#platensSelect').addClass('boxSelectOn');
+        $('#platensSelect').removeClass('boxSelectOff');
+
+        location.hash = "platensbox1";
+    }
+
+
+
+</script>

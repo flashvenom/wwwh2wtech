@@ -1,0 +1,187 @@
+﻿@using H2W_mvc.ViewModels;
+@{
+    TopMenu topmenu = (TopMenu)Session["TopMenu"];
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - H2W Technologies</title>
+        <meta name="description" content="@ViewBag.Description" />
+	    <meta name="keywords" content="@ViewBag.Keywords" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="/Scripts/jquery-migrate-1.2.1.js"></script>
+        <script src="/Scripts/jquery.cycle.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("ul.dropdown li").hover(function () {
+                    $(this).addClass("hover");
+                    $('ul:first', this).css('visibility', 'visible');
+                }, function () {
+                    $(this).removeClass("hover");
+                    $('ul:first', this).css('visibility', 'hidden');
+                });
+                $("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
+                $('.op').each(function () {
+                    $(this).val($(this).attr('defaultVal'));
+                    $(this).css({ color: '#67a7e6' });
+                });
+
+                $('.op').focus(function () {
+                    if ($(this).val() == $(this).attr('defaultVal')) {
+                        $(this).val('');
+                        $(this).css({ color: 'black' });
+                    }
+                });
+                $('.op').blur(function () {
+                    if ($(this).val() == '') {
+                        $(this).val($(this).attr('defaultVal'));
+                        $(this).css({ color: '#67a7e6' });
+                    }
+                });
+
+                swingLogos();
+
+            });
+
+            function swingLogos() {
+                $("#imageStripBox").css("left", "0");
+                $("#imageStripBox").animate({
+                    left: ["-2300", "linear"]
+                }, 100000, function () {
+                    swingLogos();
+                });
+            }
+        </script>
+    </head>
+    <body>
+        
+        <header>
+            <div class="content-wrapper">
+                <div class="logoContain">
+                    <div class="socialmenu">
+                        <a href="http://www.youtube.com/user/h2wtechnologies" target="_blank"><img src="~/Images/social_youtube.png" border="0" class="" /></a>
+                        <a href="https://www.facebook.com/h2wtech" target="_blank"><img src="~/Images/social_fb.png" border="0" class="" /></a>
+                        <a href="https://twitter.com/h2wtech" target="_blank"><img src="~/Images/social_twitter.png" class="" border="0" /></a>
+                        <a href="https://plus.google.com/+H2wtech" rel="publisher" target="_blank"><img src="~/Images/social_google.png" border="0" class="" /></a>
+                        <div style="width:5px; float:left;"></div>
+                    </div>
+					<div id="baldorBox" class="tagcontact">
+                        <img src="/Images/Baldor-logo.png" width=120 /><br />
+					    Manufacturer of Baldor<br />
+						Linear Motor Replacements
+					</div>
+                    <div class="logoArea">
+                        <a href="~/"><img src="~/Images/logo3.png" border="0" /></a>
+						
+                        <div id="taglineBox" class="tagsection">
+                            <span class="tagline">Innovation in Linear Motion</span><br />
+                            <span class="tagcontact"><strong>Need help finding a product? Contact us:</strong><br />
+                            <a href="mailto:info@h2wtech.com" style="color:#808080">info@h2wtech.com</a> or <span style="color:#808080">(888) 702-0540</span>
+                            </span>
+                        </div>
+						
+                    </div>
+					
+                    
+                </div><!--/logoContain-->
+                <div id="menuContain">
+                  <ul class="dropdown">
+        	        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        	        <li><a href="~/page/linear-motors">Motors</a>
+        		        <ul class="sub_menu">
+                            @foreach (var item in topmenu.Motors)
+                            {
+                                <li><a href="~/category/@item.CategoryPageUrl">@item.Name</a></li>
+                            }
+        		        </ul>
+        	        </li>
+        	        <li><a href="~/page/linear-positioning-stages">Positioning Stages</a>
+                        <ul class="sub_menu">
+                            @foreach (var item in topmenu.PoitioningStages)
+                            {
+                                <li><a href="~/category/@item.CategoryPageUrl">@item.Name</a></li>
+                            }
+                        </ul>
+        	        </li>
+        	        <li><span class="nolink">Other Solutions</span>
+                        <ul class="sub_menu">
+                            <li><a href="/page/vacuum-compatible">Vacuum Compatible</a></li>
+                            <li><a href="/category/multi-axis-positioning-stages">Multi-Axis Positioning Systems</a></li>
+                            <li><a href="/page/air-bearing-systems">Air Bearing Systems</a></li>
+                            <li><a href="/page/amplifiers-drivers-and-motion-controllers">Amplifiers & Drivers</a></li>
+                            <li><a href="/page/motion-control-system-integration">Motion Control System Integration</a></li>
+                            <li><a href="/page/linear-magnetic-brakes">Linear Magnetic Brakes</a></li>
+                            <li><a href="/page/motion-control-engineering-design-services">Engineering Design Services</a></li>
+                        </ul>
+        	        </li>
+                    <li><span class="nolink">Resources</span>
+                        <ul class="sub_menu">
+                            <li>@Html.ActionLink("Product Selector", "ProductSelector", "Home")</li>
+                            <li><a href="/page/industries-and-applications">Industries & Applications</a></li>
+                            <li><a href="/page/position-control-options">Position Control Options</a></li>
+                            <li><a href="/page/application-worksheets">Forms</a></li>
+                            <li><a href="/page/rules-of-thumb">Rules of Thumb</a></li>
+                            <li><a href="/page/calculator">Calculator</a></li>
+                            <li><a href="/page/glossary">Glossary</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("News", "Index", "news")</li>
+                      <li><a href="/page/about">About</a></li>
+                      <li><a href="/page/contact">Contact</a></li>
+                  </ul>
+                  @RenderPage("~/Views/Shared/_SearchForm.cshtml")
+                </div><!--/menuContain-->
+            </div><!--/content-wrapper-->
+        </header>
+       
+        <div id="body">
+            <section class="content-wrapper">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-right">
+                    <p style="text-align:right; padding-top:10px; color:#808080; font-size:11px; line-height:14px;">
+                        <strong>H2W Technologies, Inc.</strong><br />
+						26380 Ferry Court <br />
+						Santa Clarita, CA 91350 <br />
+						888.702.0540 toll-free<br />
+						661.291.1620 phone<br />
+						661.291.1626 fax<br />
+                    </p>
+                </div>
+                <div style="position:relative; left:50px; top:15px; font-size:11px; color:#808080;">Featured Clients</div>
+                
+                <div style="position:relative; left:50px; top:15px; height:50px; width:600px; float:left; overflow:hidden;">
+                    <div id="imageStripBox" style="position:absolute;"><img id="logoStrip" src="/Images/logostrip.jpg" /></div>
+                    <div style="position:absolute; left:0px; top:0px;"><img src="/Images/logoStrip_gradleft.png" />
+                    <div style="position:absolute; left:560px; top:0px;"><img src="/Images/logoStrip_gradright.png" />
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </footer>
+        <div id="bfooter2" style="width:100%; color:#bebebe; text-align:center; padding-top:10px; padding-bottom:10px;">
+
+        &copy; @DateTime.Now.Year H2W Technologies, Inc. All rights reserved.<br /><a href="~/Home/SiteMap">Site Map</a>
+            </div>
+        @RenderSection("scripts", required: false)
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-22386718-1', 'h2wtech.com');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<H2W_lib.tblCategorySpecificSpec>
+
+@Html.Partial("_AdminMenu")
+
+<h2>Specification Categories</h2>
+
+<table class="adminTable">
+    <tr>
+        <th>
+            Category
+        </th>
+        <th>
+            Specification
+        </th>
+        <th>
+            Units1
+        </th>
+        <th>
+            Units2
+        </th>
+        <th>
+            Sequence
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <span style="color:#526970">@Html.DisplayFor(modelItem => item.tblCategory.Name)</span>
+        </td>
+        <td>
+            <strong>@Html.DisplayFor(modelItem => item.SpecName)</strong>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Units1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Units2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sequence)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "CatSpecEdit", new { id=item.CSpecId })
+        </td>
+    </tr>
+}
+
+</table>

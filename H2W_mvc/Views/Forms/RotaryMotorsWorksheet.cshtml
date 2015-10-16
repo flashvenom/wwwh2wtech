@@ -1,0 +1,283 @@
+﻿@model H2W_mvc.Models.RotaryMotorsWorksheet
+@using H2W_mvc.Models
+@{
+    ViewBag.Title = "Rotary Motors Worksheet ";
+}
+<h2>Rotary Motors Worksheet</h2>
+
+@using (Html.BeginForm()) {
+@Html.ValidationSummary(true)
+
+<fieldset class="worksheetClass">
+
+    <legend>LinearMotorsWorksheet</legend>
+
+    <div style="height:10px;"></div>
+    <div style="width:450px; float:left;">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.FullName)
+        </div>
+        <div class="display-field">
+             @Html.TextBoxFor(m => m.FullName, new { @class = "worksheetField" }) <span class="req">*</span>
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.FullName)
+        </div>
+        <br clear="all" />
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Company)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.Company, new { @class = "worksheetField" }) <span class="req">*</span>
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.Company)
+        </div>
+    </div>
+    
+    <div style="width:450px; float:left;">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Email)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.Email, new { @class = "worksheetField" }) <span class="req">*</span>
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <br clear="all" />
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Phone)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.Phone, new { @class = "worksheetField" }) <span class="req">*</span>
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+    </div>
+    <br clear="all" />
+    <br />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest1)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest1, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2">
+        [degrees]
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest2)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest2, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2">
+        [oz-in-sec<sup>2</sup>]
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest3)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest3, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2">
+        [rpm]
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest4)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest4, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2">
+        [sec]
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest5)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest5, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2">
+         [rad/sec<sup>2</sup>]
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest6)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest6, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2" style="width:200px;">
+         @Html.DropDownList("Quest6ddl", new SelectList(measurementTables.torque),"--select--") <span id="Quest6Alert" class="r8">&nbsp;< REQUIRED</span>
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest7)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest7, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2" style="width:200px;">
+         @Html.DropDownList("Quest7ddl", new SelectList(measurementTables.torque),"--select--") <span id="Quest7Alert" class="r8">&nbsp;< REQUIRED</span>
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest8)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest8, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2">
+         [%]
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest9)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest9, new { @class = "worksheetField2" })
+    </div>
+
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest10)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest10, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2" style="width:200px;">
+         @Html.DropDownList("Quest10ddl", new SelectList(measurementTables.accuracy2),"--select--") <span id="Quest10Alert" class="r8">&nbsp;< REQUIRED</span>
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest11)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest11, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2" style="width:200px;">
+         @Html.DropDownList("Quest11ddl", new SelectList(measurementTables.accuracy2),"--select--") <span id="Quest11Alert" class="r8">&nbsp;< REQUIRED</span>
+    </div>
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest12)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest12, new { @class = "worksheetField2" })
+    </div>
+    
+    <br clear="all" />
+
+    <div class="display-label2">
+         @Html.DisplayNameFor(model => model.Quest13)
+    </div>
+    <div class="display-field2">
+        @Html.TextBoxFor(model => model.Quest13, new { @class = "worksheetField2" })
+    </div>
+    <div class="display-foot2" style="width:200px;">
+         @Html.DropDownList("Quest13ddl", new SelectList(measurementTables.power),"--select--") <span id="Quest13Alert" class="r8">&nbsp;< REQUIRED</span>
+    </div>
+    <br clear="all" />
+
+
+
+    <br />
+
+    <span style="font-size:12px;">
+    Please describe to us in as much detail as possible about your application in the space provided below.
+Please e-mail or fax any sketches, CAD drawings, velocity profiles, or system specifications you may have.
+    </span><div style="clear:both;"></div> 
+    <div class="display-field2">
+        @Html.TextAreaFor(model => model.Comments, new { @class = "worksheetTextArea" })
+    </div>
+    <br clear="all" /><br />
+    <span style="font-size:13px;">This is usually enough information to get us going with the selection process. One of our engineers will contact you directly to discuss your application in detail and determine which one of our products will best suit your requirements.</span>
+    <br clear="all" /><br />
+    
+
+    <input type="submit" value="Submit Form" />
+
+        
+</fieldset>
+}
+
+<script type="text/javascript">
+    $("#Quest6").keyup(function () {
+        if ($("#Quest6").val().length > 0 && $('#Quest6ddl').val() == "") {
+            $('#Quest6Alert').fadeIn('slow');
+            $('#Quest6ddl').addClass('r9');
+        } else {
+            $('#Quest6ddl').removeClass('r9');
+            $('#Quest6Alert').fadeOut('slow');
+        }
+    });
+
+    $("#Quest7").keyup(function () {
+        if ($("#Quest7").val().length > 0 && $('#Quest7ddl').val() == "") {
+            $('#Quest7Alert').fadeIn('slow');
+            $('#Quest7ddl').addClass('r9');
+        } else {
+            $('#Quest7ddl').removeClass('r9');
+            $('#Quest7Alert').fadeOut('slow');
+        }
+    });
+
+    $("#Quest10").keyup(function () {
+        if ($("#Quest10").val().length > 0 && $('#Quest10ddl').val() == "") {
+            $('#Quest10Alert').fadeIn('slow');
+            $('#Quest10ddl').addClass('r9');
+        } else {
+            $('#Quest10ddl').removeClass('r9');
+            $('#Quest10Alert').fadeOut('slow');
+        }
+    });
+
+    $("#Quest11").keyup(function () {
+        if ($("#Quest11").val().length > 0 && $('#Quest11ddl').val() == "") {
+            $('#Quest11Alert').fadeIn('slow');
+            $('#Quest11ddl').addClass('r9');
+        } else {
+            $('#Quest11ddl').removeClass('r9');
+            $('#Quest11Alert').fadeOut('slow');
+        }
+    });
+
+    $("#Quest13").keyup(function () {
+        if ($("#Quest13").val().length > 0 && $('#Quest13ddl').val() == "") {
+            $('#Quest13Alert').fadeIn('slow');
+            $('#Quest13ddl').addClass('r9');
+        } else {
+            $('#Quest13ddl').removeClass('r9');
+            $('#Quest13Alert').fadeOut('slow');
+        }
+    });
+
+
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,15 @@
+﻿<div id="adminMenuContainer">
+    <div class="blankAdmin">Admin Menu:</div>
+    @Html.ActionLink("Home", "Index", "Admin")
+    @Html.ActionLink("Tabs", "Tabs", "Admin")
+    @Html.ActionLink("Pages", "Pages", "Admin")
+    @Html.ActionLink("Categories", "Categories", "Admin")
+    @Html.ActionLink("Products", "ProductList", "Admin")
+    @Html.ActionLink("Specifications", "Specifications", "Admin")
+    @Html.ActionLink("News Articles", "ArticleList", "Admin")
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    }
+</div>
+<div style="clear:both;"></div>

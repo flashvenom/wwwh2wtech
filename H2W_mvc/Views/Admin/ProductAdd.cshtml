@@ -1,0 +1,42 @@
+﻿@using H2W_lib;
+
+
+@Html.Partial("_AdminMenu")
+
+<h2>Add a New Product</h2>
+
+<div id="pageContainer">
+    @{
+        int myStep = 1;
+        List<tblCategory> featlist = ViewBag.featlist;
+        foreach (var item in featlist)
+        {
+            <a href="/Admin/ProductAddDo?cat=@item.CategoryId"><img src="@item.FeaturedThumbnail" onclick="window.location='/Admin/ProductAddDo?cat=@item.CategoryId'" class="hrc" /></a>
+            if(myStep < 5){
+                <div class="spc">&nbsp;</div>
+                myStep++;
+            }else{
+                <div class="clr">&nbsp;</div>
+                myStep = 1;
+            }
+        }
+        
+        <br clear="all" />
+        <br clear="all" /><br clear="all" />
+        
+        myStep = 1;
+        foreach (var item in featlist)
+        {
+            <a href="/Admin/ProductAddDo?cat=@item.CategoryId">@item.Name</a>
+            if(myStep < 5){
+                <div class="spc">&nbsp;</div>
+                myStep++;
+            }else{
+                <div class="clr">&nbsp;</div>
+                myStep = 1;
+            }
+        } 
+    }
+    <div style="clear:both"></div>
+    @Html.ActionLink("Test Add", "ProductAddDo", new { cat = 2 }, null) 
+</div>

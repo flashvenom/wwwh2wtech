@@ -1,0 +1,232 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+<div style="clear:both; height:10px;"></div>
+<div style="width:100%; background-color:#808080; height:25px;">
+    <span id="vcsSelect" class="boxSelectOn" onclick="switchToVcs()">VCS (Using Moving Coil Motors)</span>
+    <span id="vmsSelect" class="boxSelectOff" onclick="switchToVms()">VMS (Using Moving Magnet Motors)</span>
+</div>
+<div style="border-left:2px solid #808080; border-right:2px solid #808080; border-bottom:7px solid #808080;">
+
+    <div id="vcsbox">
+        <table class="specTable">
+            <thead>
+                <tr style="background-color:#eee;">
+                    <th>Model #</th>
+                    <th>Thumbnail</th>
+                    <th>Stroke</th>
+                    <th>Force @@ 100% Duty</th>
+                    <th>Force @@ 10% Duty</th>
+                    <th>Bearing Type</th>
+                    <th>Encoder Resolution</th>
+                    <th>Motor P/N</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.products)
+                {
+                    if (item.ProductNo.Substring(0, 3) == "VCS")
+                    {
+                        <tr style="border-bottom:1px solid #ccc;">
+                            <td>
+                                @Html.ActionLink(item.ProductNo, "show", "product", new { category = item.tblCategory.CategoryPageUrl, productid = item.ProductNo }, null)
+                            </td>
+                            <td>
+                                <a href="../product/@item.tblCategory.CategoryPageUrl/@item.ProductNo">
+                                    @{
+                                        if (item.ThumbnailPath == null)
+                                        {
+                                            <img src="/Images/Thumbnails/noimage.gif" />
+                                        }
+                                        else
+                                        {
+                                            if (item.ThumbnailPath.Length != 0)
+                                            {
+                                                <img src="@item.ThumbnailPath" />
+                                            }
+                                            else
+                                            {
+                                                <img src="/Images/Thumbnails/noimage.gif" />
+                                            }
+                                        }
+                                    }
+                                </a>
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                <div class="specLine"></div>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().tblCategorySpecificSpec.Units2
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                <div class="specLine"></div>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().tblCategorySpecificSpec.Units2
+
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                <div class="specLine"></div>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().tblCategorySpecificSpec.Units2
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 97).FirstOrDefault().SpecValue1
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 98).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 98).FirstOrDefault().tblCategorySpecificSpec.Units1
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 101).FirstOrDefault().SpecValue1
+                            </td>
+                            <td valign="center">
+                                @{
+                                    if (item.PDFDoc != null)
+                                    {
+                                        if (item.PDFDoc.Length > 0)
+                                        {
+                                            <a href="@item.PDFDoc" target="_blank">
+                                                <img src="~/Images/pdficon.png" />
+                                            </a>
+                                        }
+                                    }
+                                }
+                            </td>
+                        </tr>
+
+                                        }
+                                    }
+            </tbody>
+        </table>
+    </div><!--/vcsbox-->
+
+    <div id="vmsbox" style="display:none;">
+        <table class="specTable">
+            <thead>
+                <tr style="background-color:#eee;">
+                    <th>Model #</th>
+                    <th>Thumbnail</th>
+                    <th>Stroke</th>
+                    <th>Continuous Force</th>
+                    <th>Peak Force</th>
+                    <th>Bearing Type</th>
+                    <th>Encoder Resolution</th>
+                    <th>Motor P/N</th>
+                    <th>Drawing</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.products)
+                {
+                    if (item.ProductNo.Substring(0, 3) == "VMS")
+                    {
+                        <tr style="border-bottom:1px solid #ccc;">
+                            <td>
+                                @Html.ActionLink(item.ProductNo, "show", "product", new { category = item.tblCategory.CategoryPageUrl, productid = item.ProductNo }, null)
+                            </td>
+                            <td>
+                                <a href="../product/@item.tblCategory.CategoryPageUrl/@item.ProductNo">
+
+                                    @{
+                                        if (item.ThumbnailPath == null)
+                                        {
+                                            <img src="/Images/Thumbnails/noimage.gif" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.ThumbnailPath" />
+                                        }
+                                    }
+                                </a>
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                <div class="specLine"></div>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 93).FirstOrDefault().tblCategorySpecificSpec.Units2
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                <div class="specLine"></div>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 94).FirstOrDefault().tblCategorySpecificSpec.Units2
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                <div class="specLine"></div>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().SpecValue2 @item.tblProductSpecs.Where(c => c.CatSpecId == 95).FirstOrDefault().tblCategorySpecificSpec.Units2
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 97).FirstOrDefault().SpecValue1
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 98).FirstOrDefault().SpecValue1 @item.tblProductSpecs.Where(c => c.CatSpecId == 98).FirstOrDefault().tblCategorySpecificSpec.Units1
+                            </td>
+                            <td>
+                                @item.tblProductSpecs.Where(c => c.CatSpecId == 101).FirstOrDefault().SpecValue1
+                            </td>
+                            <td valign="center">
+                                @{
+                                    if (item.PDFDoc != null)
+                                    {
+                                        if (item.PDFDoc.Length > 0)
+                                        {
+                                            <a href="@item.PDFDoc" target="_blank">
+                                                <img src="~/Images/pdficon.png" />
+                                            </a>
+                                        }
+                                    }
+                                }
+                            </td>
+                        </tr>
+
+                                        }
+                                    }
+            </tbody>
+        </table>
+    </div><!--/vmsbox-->
+
+</div><!--/boxContain-->
+
+
+<link href="/Content/dataTables.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.datatables.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.specTable').dataTable({
+        "bPaginate": false,
+        "aoColumns": [
+                null,
+                null,
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                { "sType": "numeric-comma" },
+                null,
+                { "sType": "numeric-comma" },
+                null,
+                null
+        ]
+    });
+});
+function switchToVcs() {
+    $('#vmsbox').fadeOut('fast', function () {
+        $('#vcsbox').fadeIn('fast');
+        $('#vcsSelect').addClass('boxSelectOn');
+        $('#vcsSelect').removeClass('boxSelectOff');
+        $('#vmsSelect').addClass('boxSelectOff')
+        $('#vmsSelect').removeClass('boxSelectOn');
+        location.hash = "vcsbox1";
+
+
+    });
+}
+
+function switchToVms() {
+    $('#vcsbox').fadeOut('fast', function () {
+        $('#vmsbox').fadeIn('fast');
+        $('#vmsSelect').addClass('boxSelectOn')
+        $('#vmsSelect').removeClass('boxSelectOff');
+        $('#vcsSelect').addClass('boxSelectOff');
+        $('#vcsSelect').removeClass('boxSelectOn');
+        location.hash = "vmsbox1";
+    });
+}
+</script>
+
+    

@@ -1,0 +1,24 @@
+﻿@using H2W_lib;
+
+<h2>Motors</h2>
+<div style="height:7px;"></div>
+
+<div id="pageContainer">
+    @{
+        int myStep = 1;
+        List<tblCategory> featlist = ViewBag.featlist;
+        foreach (var item in featlist)
+        {
+            <img src="@item.FeaturedThumbnail" onclick="window.location='/Products/ShowCategory?catid=@item.CategoryId'" class="hrc" />
+            if(myStep < 5){
+                <div class="spc">&nbsp;</div>
+                myStep++;
+            }else{
+                <div class="clr">&nbsp;</div>
+                myStep = 1;
+            }
+        }
+            
+    }
+    <div style="clear:both"></div>
+</div>

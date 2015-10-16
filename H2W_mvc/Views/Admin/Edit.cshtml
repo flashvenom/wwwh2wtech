@@ -1,0 +1,106 @@
+﻿@model H2W_lib.tblText
+
+<script type="text/javascript" src="../../scripts/jHtmlArea-0.7.5.min.js"></script>
+<link rel="Stylesheet" type="text/css" href="../../content/jHtmlArea.css" />
+<script type="text/javascript">
+    $(function() {
+        $("#html").htmlarea();
+    });
+    jQuery.browser = {};
+    jQuery.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+</script>
+<style type="text/css">
+    #DescriptionBot {
+        width: 835px;
+        height: 100px;
+        background-color:#fff;
+    }
+    
+    .tbCls {
+        width: 950px;
+        height: 600px;
+        background-color:#fff;
+    }
+
+    .editor-field ul {
+        padding-left: 0px;
+    }
+
+    .text-box {
+        width: 500px;
+        padding:4px;
+        margin-bottom:8px;
+    }
+</style>
+
+<h2>Edit a Page</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblText</legend>
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.productId)
+        @Html.HiddenFor(model => model.pageId)
+        @Html.HiddenFor(model => model.categoryId)
+        @Html.HiddenFor(model => model.datemodified)
+        @Html.HiddenFor(model => model.staffmodified)
+
+        <div style="">
+            Page Id:<br />
+            <a href="../../Pages/Show?pageid=@Model.pageId" target="_blank">@Model.pageId</a>
+        </div><br />
+
+
+        <div style="">
+            Category:<br />
+            <strong>@Html.DisplayFor(x => x.tblCategory.Name)</strong>
+        </div><br />
+
+        <div style="">
+            Tab/Page:<br />
+            <strong>@Html.EditorFor(x => x.section)</strong>
+        </div><br />
+
+        <div style="">
+            Slug:<br />
+            <strong>@Html.EditorFor(x => x.slug)</strong>
+        </div><br />
+
+        <div style="">
+            HTML Title:<br />
+            <strong>@Html.EditorFor(x => x.pagetitle)</strong>
+        </div><br />
+
+        <div style="">
+            META Keywords:<br />
+            <strong>@Html.EditorFor(x => x.keywords)</strong>
+        </div><br />
+
+        <div style="">
+            META Description:<br />
+            <strong>@Html.EditorFor(x => x.description)</strong>
+        </div><br />
+
+        <div style="clear:both;"></div>
+
+        
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.html, new { @class = "tbCls" })
+            @Html.ValidationMessageFor(model => model.html)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

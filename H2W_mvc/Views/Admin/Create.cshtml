@@ -1,0 +1,87 @@
+﻿@model H2W_lib.tblText
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Create a New Page</legend>
+
+        <div class="editor-label">
+            Page ID Number
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pageId)
+            @Html.ValidationMessageFor(model => model.pageId)<br />
+            <span style="font-size:11px;">Give the page a <strong>unique</strong> number.</span><br /><br />
+        </div>
+
+        <div class="editor-label">
+            Page Title
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.section)
+            @Html.ValidationMessageFor(model => model.section)<br />
+            <span style="font-size:11px;">The title and name of the page. This will be at the top of the page.</span><br /><br />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.html)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.html)
+            @Html.ValidationMessageFor(model => model.html)
+            <span style="font-size:11px;">Get the page started with some text. A full HTML editor will be presented on the next page, however, it is recommended you program your HTML in a stand alone web editor such as Dreamweaver, then copy paste.</span><br /><br /><br />
+        </div>
+
+        <div style="display:none">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.categoryId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.categoryId)
+                @Html.ValidationMessageFor(model => model.categoryId)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.productId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.productId)
+                @Html.ValidationMessageFor(model => model.productId)
+            </div>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.datemodified)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.datemodified)
+                @Html.ValidationMessageFor(model => model.datemodified)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.staffmodified)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.staffmodified)
+                @Html.ValidationMessageFor(model => model.staffmodified)
+            </div>
+        </div><!--/displayNONE-->
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

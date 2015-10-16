@@ -1,0 +1,298 @@
+﻿@model H2W_mvc.ViewModels.ProductVM
+@using H2W_mvc.ViewModels;
+
+<h2 style="float:left;">@Model.prodrec.Name</h2>
+<div style="float:left; position:relative; top:10px; left:10px;">@Model.prodrec.ProductNo</div>
+<div style="clear:both; font-size:11px;"><!--@ViewBag.DivBackTest--><a href="~/category/@Model.prodrec.tblCategory.CategoryPageUrl#@ViewBag.DivBack">< Back to list</a></div>
+
+
+<div style="height:7px; clear:both;"></div>
+<div id="pageContainer">
+    <div id="productLeftCol" style="float:left; width:480px; font-size:16px;">
+        @{
+         
+         
+         if(Model.prodrec.ProductPicPath != null){
+             if(Model.prodrec.ProductPicPath.Length > 0){
+                 <img src="@Model.prodrec.ProductPicPath" width="480" height="360" />
+             }else{
+                 <img src="~/Images/blankbig.jpg" width="480" height="360" />
+             }
+         }else{
+             <img src="~/Images/blankbig.jpg" width="480" height="360" />
+        }
+        }
+        @functions
+        {
+            // I went ahead and rewrote this code because having multiple copies of it was silly. Now you can put a format for the numbers into each table without having to do copious amounts of copying.
+            // This method allows for two different specifications for each left and right part with spec and spec2, respectively
+            public string formatTable(string spec, string spec2, H2W_lib.tblProductSpec item)
+            {
+                string result = "";
+
+                result += @"<tr>
+                    <td style='text-align:left;'>";
+                result += item.tblCategorySpecificSpec.SpecName;
+                result += "</td>";
+                if (item.SpecValue2 == null)
+                {
+                    result += "<td colspan='2'>";
+                    if (item.SpecValue1.IsDecimal())
+                    {
+                        if (item.SpecValue1.AsDecimal() == 0)
+                            result += item.SpecValue1.AsDecimal().ToString("#,0");
+                        else
+                            result += item.SpecValue1.AsDecimal().ToString(spec);
+                        result += " " + item.tblCategorySpecificSpec.Units1;
+                    }
+                    else
+                    {
+                        result += item.SpecValue1 + " " + item.tblCategorySpecificSpec.Units1;
+                    }
+                    result += "</td>";
+                }
+                else if (item.SpecValue2.Length == 0)
+                {
+                    result += "<td colspan='2'>";
+                    if (item.SpecValue1.IsDecimal())
+                    {
+                        if (item.SpecValue1.AsDecimal() == 0)
+                            result += item.SpecValue1.AsDecimal().ToString("#,0");
+                        else
+                            result += item.SpecValue1.AsDecimal().ToString(spec);
+                        result += " " + item.tblCategorySpecificSpec.Units1;
+                    }
+                    else
+                    {
+                        result += item.SpecValue1 + " " + item.tblCategorySpecificSpec.Units1;
+                    }
+                    result += "</td>";
+                }
+                else
+                {
+                    result += "<td>";
+                    if (item.SpecValue1.IsDecimal())
+                    {
+                        if (item.SpecValue1.AsDecimal() == 0)
+                            result += item.SpecValue1.AsDecimal().ToString("#,0");
+                        else
+                            result += item.SpecValue1.AsDecimal().ToString(spec);
+                        result += " " + item.tblCategorySpecificSpec.Units1;
+                    }
+                    else
+                    {
+                        result += item.SpecValue1 + " " + item.tblCategorySpecificSpec.Units1;
+                    }
+                    
+                    result += @"</td>
+                                <td>";
+                    if (item.SpecValue2.IsDecimal())
+                    {
+                        if (item.SpecValue2.AsDecimal() == 0)
+                            result += item.SpecValue2.AsDecimal().ToString("#,0");
+                        else
+                            result += item.SpecValue2.AsDecimal().ToString(spec);
+                        result += " " + item.tblCategorySpecificSpec.Units2;
+                    }
+                    else
+                    {
+                        result += item.SpecValue2 + " " + item.tblCategorySpecificSpec.Units2;
+                    }
+                    result += "</td>";
+                }
+                result += "</tr>";
+
+                return result;
+            }
+        }
+    
+
+        @Html.Raw(Model.prodrec.DescriptionTop)<br /><br />
+        <span style="font-size:11px">@Html.Raw(@Model.prodrec.DescriptionBot)</span>
+        <br /><br />
+        <!---
+        <div align="center">
+            <div class="minimal" onclick="window.open('@Html.Raw(Model.prodrec.PDFDoc)')">
+                <img src="~/Images/pdficon.png" /><br />Download PDF
+            </div>
+        </div>
+            --->
+    </div><!--/productLeftCol-->
+ 
+    <div id="productRightCol" style="float:right; width:450px; padding:0px;">
+        <div align="center">
+        Main
+        <table border="0" class="productSpecTable">
+            @{
+                if (Model.prodrec.PDFDoc != null){
+                    if (Model.prodrec.PDFDoc.Length > 0){
+                         <tr>
+                            <td>
+                                <strong>Product Details (PDF)</strong>
+                            </td>
+                            <td colspan="2">
+                                <a href="@Html.Raw(Model.prodrec.PDFDoc)" target="_blank"><img src="~/Images/pdficon.png" border="0" /></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+       
+        @foreach (var item in Model.prodspec) {
+            if (item.tblCategorySpecificSpec.SpecName.Equals("Motor P/N")) // .Equals compares string contents. == compares references, don't use it for string comparison.
+            {
+                <tr>
+                    <td>
+                        @item.tblCategorySpecificSpec.SpecName
+                    </td>
+                    <td colspan="2">
+                        @if (item.SpecValue1.IndexOf("/") > 0){
+                            string[] thisThat = item.SpecValue1.Split('/');
+                            <a href="MotorsLink?id=@thisThat[0].Trim()">
+                                @thisThat[0].Trim() <img src="/Images/ico_openLink.png" style="position:relative; top:1px; left:3px;" />
+                            </a>
+                            <text>/</text>
+                            <a href="MotorsLink?id=@thisThat[1].Trim()">
+                                @thisThat[1].Trim() <img src="/Images/ico_openLink.png" style="position:relative; top:1px; left:3px;" />
+                            </a>
+                        }else{
+                            <a href="MotorsLink?id=@item.SpecValue1">
+                                @item.SpecValue1 <img src="/Images/ico_openLink.png" style="position:relative; top:1px; left:3px;" />
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+            // Overriding the default tailing zeroes on the specs.
+            else if (item.tblCategorySpecificSpec.SpecName.Equals("Radial Clearance"))
+            {
+                @Html.Raw(formatTable("#,0.000", "#,0.000", item))
+            }
+            else if (item.tblCategorySpecificSpec.SpecName.Equals("Current @ 100% Duty") ||
+                     item.tblCategorySpecificSpec.SpecName.Equals("Current @ 10% Duty") ||
+                     item.tblCategorySpecificSpec.SpecName.Equals("Encoder Resolution"))
+            {
+                @Html.Raw(formatTable("#,0.0", "#,0.0", item));
+            }
+            else if (item.tblCategorySpecificSpec.SpecName.Equals("# of Poles") ||
+                    item.tblCategorySpecificSpec.SpecName.Equals("Continuous Torque Range"))
+            {
+                @Html.Raw(formatTable("#,0", "#,0.00", item));
+            }
+            else if(item.tblCategorySpecificSpec.SpecName.Equals("Power @ 10% Duty") ||
+                    item.tblCategorySpecificSpec.SpecName.Equals("Power @ 100% Duty") ||
+                    item.tblCategorySpecificSpec.SpecName.Equals("Current @ Duty Cycle") ||
+                    item.tblCategorySpecificSpec.SpecName.Equals("Input Voltage") ||
+                    item.tblCategorySpecificSpec.SpecName.Equals("Frequency") ||
+                    item.tblCategorySpecificSpec.SpecName.Equals("Power @ Duty Cycle"))
+            {
+                @Html.Raw(formatTable("#,0", "#,0", item));
+            }
+            else if (item.tblCategorySpecificSpec.Sequence != 99) // Default
+            {
+                @Html.Raw(formatTable("#,0.00", "#,0.00", item));
+            }
+        }
+            
+        </table>
+            </div>
+
+        @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+            
+            <fieldset class="worksheetClass" style="padding:18px; background-color:#0063c7; color:#fff; ">
+                <strong>Request a Quote</strong><br />
+                <div style="height:8px; clear:both;"></div>
+                <div style="width:200px; overflow:hidden; float:left;">
+
+                    <div class="display-label4">
+                         @Html.DisplayNameFor(model => model.FullName)
+                    </div>
+                    <div class="display-field4">
+                         @Html.TextBoxFor( m => m.FullName, new { @class = "worksheetField4" })
+                    </div>
+                    <div class="display-error4">
+                        @Html.ValidationMessageFor(m => m.FullName)
+                    </div>
+
+                         <div style="height:8px; clear:both;"></div>
+                
+                    <div class="display-label4">
+                         @Html.DisplayNameFor(model => model.Company)
+                    </div>
+                    <div class="display-field4">
+                        @Html.TextBoxFor(model => model.Company, new { @class = "worksheetField4" })
+                    </div>
+                    <div class="display-error4">
+                        @Html.ValidationMessageFor(m => m.Company)
+                    </div>
+
+                    <div style="height:8px; clear:both;"></div>
+
+                    <div class="display-label4">
+                        @Html.DisplayNameFor(model => model.Quest1)
+                    </div>
+                    <div class="display-field4">
+                        @Html.TextBoxFor(model => model.Quest1, new { @Value = Model.prodrec.ProductNo, @class = "worksheetField4",  })
+                    </div>
+
+                </div>
+            
+                <div style="width:200px; overflow:hidden; float:left;">
+                    <div class="display-label4">
+                         @Html.DisplayNameFor(model => model.Email)
+                    </div>
+                    <div class="display-field4">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "worksheetField4" })
+                    </div>
+                    <div class="display-error4">
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+
+                         <div style="height:8px; clear:both;"></div>
+
+                    <div class="display-label4">
+                         @Html.DisplayNameFor(model => model.Phone)
+                    </div>
+                    <div class="display-field4">
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "worksheetField4" })
+                    </div>
+                    <div class="display-error4">
+                        @Html.ValidationMessageFor(m => m.Phone)
+                    </div>
+
+                        <div style="height:8px; clear:both;"></div>
+
+                    <div class="display-label4">
+                         @Html.DisplayNameFor(model => model.Quest2)
+                    </div>
+                    <div class="display-field4">
+                        @Html.TextBoxFor(model => model.Quest2, new { @class = "worksheetField4" })
+                    </div>
+                </div>
+               <br />
+                <div style="height:8px; clear:both;"></div>
+               
+                <span style="font-size:12px; clear:both;">
+                    Comments & Special Instructions:
+                </span>
+                
+                    @Html.TextAreaFor(model => model.Comments, new { @class = "worksheetTextArea4" })
+             
+                <br clear="all" /><br />
+                <input type="submit" value="Request Quote" class="minimal" />
+
+            </fieldset>
+            
+            
+        }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+
+       
+    </div>
+    
+    <div style="clear:both;"></div>
+    
+</div><!--//tabContainer-->

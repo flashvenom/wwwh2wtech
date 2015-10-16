@@ -1,0 +1,10 @@
+﻿@using (Html.BeginForm("Results", "Search", FormMethod.Get))
+{
+    <div id="searchBox" style="">
+        @Html.TextBox("filter", null, new {@class="searchFilter op", defaultVal="Keyword or Part #"})
+
+        <div style="float:left;">
+            <input type="image" src="~/Images/searchicon.png" />
+        </div>
+    </div>
+}

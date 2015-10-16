@@ -1,0 +1,102 @@
+﻿@model H2W_lib.tblCategorySpecificSpec
+
+@{
+    ViewBag.Title = "Edit a Product";
+}
+
+<h2>Edit Specification</h2>
+
+<script type="text/javascript" src="../../scripts/jHtmlArea-0.7.5.min.js"></script>
+<link rel="Stylesheet" type="text/css" href="../../content/jHtmlArea.css" />
+<script type="text/javascript">
+    $(function() {
+        $("#DescriptionBot").htmlarea();
+        $("#Description").htmlarea();
+        $("#DescriptionTop").htmlarea();
+    });
+    jQuery.browser = {};
+    jQuery.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+</script>
+<style type="text/css">
+    #DescriptionBot {
+        width: 835px;
+        height: 100px;
+        background-color:#fff;
+    }
+    
+    .tbCls {
+        width: 950px;
+        height: 100px;
+        background-color:#fff;
+    }
+
+    .editor-field ul {
+        padding-left: 0px;
+    }
+
+    .text-box {
+        width: 500px;
+        padding:4px;
+        margin-bottom:8px;
+    }
+
+</style>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblText</legend>
+
+        @Html.HiddenFor(model => model.CSpecId)
+        @Html.HiddenFor(model => model.SpecType)
+        CategoryId: @Html.EditorFor(model => model.CategoryId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SpecName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SpecName)
+            @Html.ValidationMessageFor(model => model.SpecName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Units1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Units1)
+            @Html.ValidationMessageFor(model => model.Units1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Units2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Units2)
+            @Html.ValidationMessageFor(model => model.Units2)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Sequence)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sequence)
+            @Html.ValidationMessageFor(model => model.Sequence)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

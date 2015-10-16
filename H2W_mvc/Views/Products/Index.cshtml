@@ -1,0 +1,269 @@
+﻿@{
+    ViewBag.Title = "Voice Coil Linear Actuators";
+    string testVar = ViewBag.TestVar;
+}
+
+<script language="javascript" type="text/javascript">
+	function resetAll(){
+		$('#productInfo').hide();
+		$('#operatingInfo').hide();
+		$('#videos').hide();
+		$('#dimensions').hide();
+		$('#specifications').hide();
+		
+		$('#productInfoTab').removeClass('on');
+		$('#operatingInfoTab').removeClass('on');
+		$('#videosTab').removeClass('on');
+		$('#dimensionsTab').removeClass('on');
+		$('#specificationsTab').removeClass('on');
+	}
+	function show(what){
+		resetAll();
+		$('#'+what).show();
+		$('#'+what+'Tab').addClass('on');
+	}
+	
+	$(function() {
+		resetAll();
+		show('productInfo');
+	});
+</script>
+
+
+<h2>@ViewBag.Title</h2><br />
+TestVar: @ViewBag.TestVar <br />
+TestVar2: @ViewBag.TestVar2<br />
+
+<div id="productInfoTab" class="tab" onclick="show('productInfo');">Product Info</div>
+<div id="specificationsTab" class="tab" onclick="show('specifications');">Specifications</div>
+<div id="dimensionsTab" class="tab" onclick="show('dimensions');">Technical Data</div>
+<div id="operatingInfoTab" class="tab" onclick="show('operatingInfo');">Operating Info</div>
+<div id="videosTab" class="tab" onclick="show('videos');">Videos</div><br />
+        
+<div id="tabContainer">
+    <br />
+    <div id="productInfo" class="subtab">
+        <table width="712" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td valign="top">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                    <td align="center" valign="top">
+                        !IMAGE
+                        <p class="maintext-paddng_l1" style="text-align:left">
+                        <strong>
+                        !!CAT_TITLE
+                        </strong><br />
+                        !DESCRIPTION
+                        </p>
+                    </td>
+                </table>
+                </td>
+                <td valign="top">&nbsp;
+                </td>
+            </tr>
+        </table>
+        <p class="maintext-paddng1">
+        H2W Technologies Voice Coils are ideal for short stroke (typically less than 2 inches)
+        closed loop servo applications. Their compact size allows them to fit into small
+        spaces. They have very low electrical and mechanical time constants. The low moving
+        mass allows for high accelerations of light payloads.<br />
+        <br />
+        These actuators are wound in such a way that no commutation is required for motion
+        to occur. The result is a much simpler and more reliable system.<br />
+        <br />
+        Coupling the actuators with a bearing system (if not supplied), position feedback
+        device, linear servo amplifier and motion controller yields a system that is capable
+        of intricate position, velocity, and acceleration control. These actuators can also
+        be used for precise force control because of the linear force versus current characteristics.<br />
+        <br />
+        Voice Coils operate on the principal of the<strong> Lorentz Force Equation</strong></p>
+        <br />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="25%" align="center" valign="middle">
+            <div align="center">
+            Force = B X I</div>
+            </td>
+            <td width="75%" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                <td valign="top">
+                where: B = Flux density (Tesla)</td>
+                </tr>
+                <tr>
+                <td valign="top">
+                I = Current (Amps)</td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        </table>
+        <p style="margin-top: 0; margin-bottom: 0;">&nbsp;</p>
+<p class="maintext-paddng" style="margin-top: 0">
+        Simply stated, a current carrying conductor placed in a magnetic field will have
+        a force exerted upon it. This force is proportional to the direction and magnitude
+        of the current and the flux density field. Since the permanent magnet flux density
+        field is fixed, the direction of the linear displacement depends on the polarity
+        of input current. The amount of force that is produced is directly proportional
+        to the magnitude of the input current.</p>
+        <br />
+        <p class="maintext-paddng1">
+        They are available in both standard as well as custom sizes. You can choose from
+        either the moving magnet (NCM type) or moving coil type (NCC Type),
+    </p>
+        <ul>
+        <li class="paddng-8">The moving coil actuators, NCC Type (sometimes referred to as voice
+                    coils) are typically supplied without bearings or a shaft, but can be added if desired.
+                    They are generally larger in diameter and shorter in length. Higher forces can be
+                    achieved by increasing the diameter. This type of actuator can be designed with
+                    large radial clearances to ensure no contact between the coil and magnet assembly
+        if a tilt or radial movement is required.</li>
+        <li class="paddng-8">The moving magnet actuators, NCM Type are supplied with bearings
+                    and a shaft. This type is generally smaller in diameter and longer in length. Higher
+                    forces can be achieved by increasing the number of poles, which increases the length,
+                    or by increasing the diameter. The main advantage is that there are no moving leads
+                    since the coil assembly is stationary. Optional no power magnetic latching is available
+        at one or both ends of the stroke.</li>
+        </ul>
+        <p class="maintext-paddng1">
+        It should be noted that for both types of actuators, longer strokes are available
+        but the efficiency or motor constant (Km) decreases as the stroke increases. This
+        is due to the fact that the motor constant is inversely proportional to the stroke.
+        If higher efficiency is desired for longer stroke actuators, the coil assembly can
+        be wound as a multiphase coil and then it will have to be commutated.</p>
+        <br />
+        <p class="maintext-paddng1">
+        <strong>Advantages:</strong></p>
+        <ul>
+        <li>Small Size, High Force to Weight Ratio</li>
+        <li>High Accelerations</li>
+        <li>No Cogging or Commutation</li>
+        <li>Custom Designs with Quick Turnaround Times</li>
+        <li>High Flux Density Neodymium Magnets are Used</li>
+        </ul>
+        <p>
+        Typical specifications for a non-commutated actuator are short stroke (0-3in or 0-75mm), accelerations of up to 20 
+        times the acceleration due to gravity, continuous forces up to 100 lbs (0-100 lbs or 0-450N), peak forces up to 300 lbs 
+        (0-300 lbs or 0-1350N), and with the addition of a linear encoder or LVDT linear position resolutions down to 0.1 microns 
+        are acheivable.
+    </p>
+              
+        <ul style="margin-bottom: 0">
+        <li>Z Axis for Pick and Place Equipment </li>
+        <li>Medical Diagnostic Probes and Laser Beam Steering</li>
+        <li>Mirror Tilt and Focusing Actuators</li>
+        <li>Miniature Position Control</li>
+        </ul>
+             
+    </div><!--//productInfo-->
+            
+    <div id="operatingInfo" class="subtab">
+        <p class="maintext-paddng1">
+        <strong>Required Electronics:</strong><br />
+        Because of the very low inductance of the actuator, a DC linear servo amplifier
+        is required to provide power to the Voice Coil. A programmable motion controller
+        is required to close the position loop on the system.</p>
+        <br />
+        <p class="maintext-paddng1">
+        <strong>Environmental Considerations:</strong><br />
+        The NC Actuators should not be mounted in an environment that is wet or excessively
+        dirty or in an environment with ambient temperatures (>50ºC).</p>
+        <br />
+        <p class="maintext-paddng1">
+        <strong>Mounting:</strong><br />
+        Mounting holes are provided on the housing, shaft and / or coil assemblies for mounting
+        the actuator to customer supplied base and payload</p>
+        <br />
+        <p class="maintext-paddng1">
+        <strong>Maintenance:</strong><br />
+        No maintenance is required.</p>
+        <br />
+            <p class="maintext-paddng1">
+        (i.e. NCC05-15-020-2X is a moving coil actuator with 0.5" stroke, 1.5" OD, 2.0 lbs
+        of continuous force, 2 pole magnet assembly and no special options)</p>
+    </div><!--//operatingInfo-->   
+            
+    <div id="videos" class="subtab">
+        <p class="maintext-paddng1">
+        <strong>Coming Soon</strong>
+        </p>
+        <br /><br>
+    </div><!--//videos-->  
+            
+    <div id="dimensions" class="subtab">
+                
+        <div align="center">
+            <img src="../images/img-33.jpg" alt="Voice Coil Linear Actuators" width="602" height="298" border="0" /><br />
+            <img src="images/nccsideview.jpg" width="480" height="360"><br />
+            <img src="images/ncmsideview.jpg" width="480" height="361"><br />
+            <img src="images/linearityofforcevsposition.jpg" width="480" height="361"><br />
+            <img src="images/forcevsposition2.jpg" width="480" height="360">
+        </div>
+        <br />
+        <h5 class="bg-2">
+        Voice Coil Positioning Stages:</h5>
+        <br />
+        <p class="maintext-paddng1" style="font-weight: bold">Our voice coils can be integrated into custom stages.&nbsp; Please see our <a href="~/category/voice-coil-stages">voice coil positioning stages</a> for some examples.</p>
+    </div><!--//dimensions-->
+            
+    <div id="specifications" class="subtab">
+        <h5>
+        NCC(Moving Coil - No Supplied Bearing System)</h5>
+        <p style="margin-top: 0; margin-bottom: 0;">&nbsp;</p>
+        <center>GRID1</center>
+        <br />
+        <a id="NCMSpecs"></a>
+        <h5>
+        NCM(Moving Magnet - H2W Internally Supplied Bearings)</h5>
+        <p style="margin-top: 0; margin-bottom: 0;">&nbsp;</p>
+        <center>GRID2</center>
+        <br />
+        <p class="maintext-paddng1">
+        *The peak force (10% Duty) is equal to 3 times the continuous force. Note: This
+        is a partial listing; other sizes, forces and strokes are available. NCM and NCC
+        Actuators can be custom designed to meet your specifications. Consult H2W for more
+        information.
+        </p>
+        <br />
+        <p class="maintext-paddng1">
+        <strong>Model # NCABB - CC - DDD - EX:</strong><br />
+        A is C for moving coil or M for moving magnet<br />
+        BB is the stroke (05 is 0.5 inch)<br />
+        CC is the outside housing diameter (15 is 1.5 inch)<br />
+        DDD is continuous force in lbs (140 is 14.0 lbs)<br />
+        E is the number of poles<br />
+        X is for special options</p>
+            
+        <br /><br />
+                
+        <p class="maintext-paddng1">
+        Voice Coils are available in many different standard and custom sizes, strokes and
+        configurations. Custom actuators can be delivered in 4 to 5 weeks. Standard units
+        are available from stock and can be shipped within 48 hours.</p>
+        <br />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="3%" valign="top">&nbsp;
+            </td>
+            <td width="8%" valign="top">
+            Model #</td>
+            <td width="89%" valign="top">
+            NCABB - CC - DDD - EX</td>
+        </tr>
+        <tr>
+            <td valign="top">&nbsp;
+            </td>
+            <td valign="top">
+            where:</td>
+            <td valign="top">
+            A is C for moving coil or M for moving magnet BB is the stroke (05 is 0.5 inch)<br />
+            CC is the outside housing diameter (15 is 1.5 inch)<br />
+            DDD is continuous force in lbs (140 is 14.0 lbs)<br />
+            E is the number of poles<br />
+            X is for special options</td>
+        </tr>
+        </table>
+    </div>
+        
+</div><!--//tabContainer-->

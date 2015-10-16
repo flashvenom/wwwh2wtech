@@ -1,0 +1,57 @@
+﻿@model IEnumerable<H2W_lib.tblProduct>
+
+@Html.Partial("_AdminMenu")
+
+<h2>Products</h2>
+
+<p>
+    @Html.ActionLink("Add New Product", "ProductAdd")
+</p>
+<table class="adminTable">
+    <tr>
+        <th>On</th>
+        <th>
+            ID
+        </th>
+        <th>
+            Product ID
+        </th>
+        <th>
+            Category
+        </th>
+        
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @{
+                if (item.Active == true)
+                {
+                   <img src="~/images/qs_yes2.gif" /> 
+                }
+                else
+                {
+                    <img src="~/images/qs_no2.gif" />
+                }
+            }
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            <strong>@Html.DisplayFor(modelItem => item.ProductNo)</strong>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCategory.Name)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "ProductEdit", new { id=item.ProductId }) |
+            @Html.ActionLink("Delete", "ProductDelete", new { id=item.ProductId })
+        </td>
+    </tr>
+}
+</table>

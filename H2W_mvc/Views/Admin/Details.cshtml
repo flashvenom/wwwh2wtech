@@ -1,0 +1,57 @@
+﻿@model H2W_lib.tblText
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>tblText</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.categoryId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.categoryId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.productId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.productId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.section)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.section)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.html)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.html)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.datemodified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.datemodified)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.staffmodified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.staffmodified)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

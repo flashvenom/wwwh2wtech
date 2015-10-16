@@ -1,0 +1,7 @@
+﻿@model IEnumerable<H2W_lib.tblCategory>
+
+@foreach (var item in Model) {
+    <div style="padding:5px; border:1px solid #ccc; background-color:#000; color:#fff;">
+        @Html.DisplayFor(modelItem => item.Name)
+    </div>
+}

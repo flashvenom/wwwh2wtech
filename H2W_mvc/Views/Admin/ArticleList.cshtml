@@ -1,0 +1,55 @@
+﻿@model IEnumerable<H2W_lib.tblNewsArticle>
+
+@Html.Partial("_AdminMenu")
+
+<h2>News</h2>
+
+<p>
+    @Html.ActionLink("Add New Article", "ArticleAdd")
+</p>
+<table class="adminTable">
+    <tr>
+        <th>On</th>
+        <th>
+            ID
+        </th>
+        <th>
+            Article
+        </th>
+        <th>
+            Date
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @{
+                if (item.Visible == true)
+                {
+                   <img src="~/images/qs_yes2.gif" /> 
+                }
+                else
+                {
+                    <img src="~/images/qs_no2.gif" />
+                }
+            }
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsArticleId)
+        </td>
+        <td>
+            <strong>@Html.DisplayFor(modelItem => item.Title)</strong>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostedDate)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "ArticleEdit", new { id=item.NewsArticleId }) |
+            @Html.ActionLink("Delete", "ArticleDelete", new { id=item.NewsArticleId })
+        </td>
+    </tr>
+}
+</table>

@@ -1,0 +1,334 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+
+@foreach (var item in Model.textAreas)
+{
+    if (item.section == "technicaldata")
+    {
+        if (item.categoryId == 1)
+        {
+            <script type="text/javascript" src="/Scripts/Voice Coil - Technical Data.js"></script>
+
+            <div style="width:100%; background-color:#808080; height:25px;">
+                <span id="standardSelect" class="boxSelectOn p" onclick="switchToOsc()">Standard System</span>
+                <span id="oscSelect" class="boxSelectOff p" onclick="switchToStandard()">Oscillatory System</span>
+            </div>
+
+        <div style="border-left:2px solid #808080; border-right:2px solid #808080; border-bottom:7px solid #808080;">
+        <div id="standardBox">
+            <div align="center">
+                <form onsubmit="return false" id="standardSelectorForm">
+                    <table class="vctd">
+                        <tr>
+                            <th>
+                                <center>Stroke (mm)</center>
+                            </th>
+                            <th>
+                                Force (N)
+                            </th>
+                            <th>
+                                Duty Cycle (%)
+                            </th>
+                            <th>
+                                Continuous Force
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <input type="number" id="dist-ps" class="vctd" placeholder="Stroke" min="0" />
+                                </center>
+                            </td>
+                            <td>
+                                <input type="number" id="forcer-ps" class="vctd" placeholder="Force" min="0" />
+                            </td>
+                            <td>
+                                <input type="number" id="duty-ps" class="vctd" placeholder="Duty Cycle" min="0" />
+                            </td>
+                            <td>
+                                <output id="cont-ps" for="acc mass" class="vctd" style="width: 100em;" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        <div id="oscBox" style="display:none;">
+            <div align="center">
+                <form onsubmit="return false" id="oscSelectorForm">
+                    <table class="vctd">
+                        <tr>
+                            <th>
+                                <center>Stroke (mm)</center>
+                            </th>
+                            <th>
+                                Frequency (Hz)
+                            </th>
+                            <th>
+                                Payload (g)
+                            </th>
+                            <th>
+                                Force Required
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <input type="number" id="stroke-ps" class="vctd" placeholder="Stroke" min="0" />
+                                </center>
+                            </td>
+                            <td>
+                                <input type="number" id="frequency-ps" class="vctd" placeholder="Frequency" min="0" />
+                            </td>
+                            <td>
+                                <input type="number" id="payload-ps" class="vctd" placeholder="Payload" min="0" />
+                            </td>
+                            <td>
+                                <output id="force-ps" for="acc mass" class="vctd" style="width: 100em;" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        <div align="center">
+            <table id="productSelector" class="selectTable">
+                <thead>
+                    <tr style="background-color:#eee;">
+                        <th>Model #</th>
+                        <th>Thumbnail</th>
+                        <th class="opt">Stroke</th>
+                        <th class="opt">Force @@100% Duty</th>
+                        <th class="opt">Force @@ 10% Duty</th>
+                        <th class="opt">Motor Constant</th>
+                        <th class="opt">Moving Mass</th>
+                        <!--<th>Total Mass</th>-->
+                        <th class="opt">Outside Diameter</th>
+                        <th class="opt">Housing Length</th>
+                        <th>PDF</th>
+                        <th class="opt">Quick Ship</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.products)
+                        {
+                            if (i.ProductNo.Substring(0, 3) == "NCC" || i.ProductNo.Substring(0, 3) == "NCM")
+                            {
+                                <tr style="border-bottom:1px solid #ccc;">
+                                    <td>
+                                        @Html.ActionLink(i.ProductNo, "show", "product", new { category = i.tblCategory.CategoryPageUrl, productid = i.ProductNo }, null)
+                                    </td>
+                                    <td>
+                                        <a href="../product/@i.tblCategory.CategoryPageUrl/@i.ProductNo">
+                                            @{
+                                if (i.ThumbnailPath == null)
+                                {
+                                    <img src="/Images/Thumbnails/noimage.gif" />
+                                }
+                                else
+                                {
+                                    if (i.ThumbnailPath.Length != 0)
+                                    {
+                                        <img src="@i.ThumbnailPath" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/Images/Thumbnails/noimage.gif" />
+                                    }
+                                }
+                                            }
+                                        </a>
+                                    </td>
+                                    <td class="opt">
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                        <div class="specLine"></div>
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 3).FirstOrDefault().tblCategorySpecificSpec.Units2
+
+                                    </td>
+                                    <td class="opt">
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                        <div class="specLine"></div>
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 2).FirstOrDefault().tblCategorySpecificSpec.Units2
+                                    </td>
+                                    <td class="opt">
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                        <div class="specLine"></div>
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 4).FirstOrDefault().tblCategorySpecificSpec.Units2
+                                    </td>
+                                    <td class="opt">
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                        <div class="specLine"></div>
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 142).FirstOrDefault().tblCategorySpecificSpec.Units2
+                                    </td>
+                                    <td class="opt">
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                        <div class="specLine"></div>
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 6).FirstOrDefault().tblCategorySpecificSpec.Units2
+                                    </td>
+                                    <!--<td>
+                                    @i.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                    <div class="specLine"></div>
+                                    @i.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 16).FirstOrDefault().tblCategorySpecificSpec.Units2
+                                    </td>-->
+                                    <td class="opt">
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                        <div class="specLine"></div>
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 11).FirstOrDefault().tblCategorySpecificSpec.Units2
+                                    </td>
+                                    <td class="opt">
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().SpecValue1 @i.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().tblCategorySpecificSpec.Units1
+                                        <div class="specLine"></div>
+                                        @i.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().SpecValue2 @i.tblProductSpecs.Where(c => c.CatSpecId == 12).FirstOrDefault().tblCategorySpecificSpec.Units2
+                                    </td>
+                                    <td valign="center">
+                                        @{
+                                if (i.PDFDoc != null)
+                                {
+                                    if (i.PDFDoc.Length > 0)
+                                    {
+                                        <a href="@i.PDFDoc" target="_blank">
+                                            <img src="~/Images/pdficon.png" />
+                                        </a>
+                                    }
+                                }
+                                        }
+                                    </td>
+                                    <td class="opt">
+                                        @{
+                                if (i.QuickShip == true)
+                                {
+                                    <span style="display:none;">1</span><img src="~/Images/qs_yes.gif" alt="Quick Ship is usually ship within 48 hours" />
+                                }
+                                else
+                                {
+                                    <span style="display:none;">0</span><img src="~/Images/qs_no.gif" />
+                                }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <link href="/Content/dataTables.css" rel="stylesheet" type="text/css" />
+        <link href="/Content/voicecoil-technicaldata.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="/Scripts/jquery.datatables.js"></script>
+        <script>
+            var str = 0;
+            var freq = 0;
+            var pay = 0;
+            var force = 0;
+            var type = 0;
+
+            var table = $('#productSelector').dataTable({
+                "bPaginate": true,
+                "sDom": '<"toolbar">lfti',
+                "aoColumns": [
+                        null,
+                        null,
+                        { "sType": "numeric-comma" },
+                        { "sType": "numeric-comma" },
+                        { "sType": "numeric-comma" },
+                        { "sType": "numeric-comma" },
+                        { "sType": "numeric-comma" },
+                        { "sType": "numeric-comma" },
+                        { "sType": "numeric-comma" },
+                        null,
+                        null
+                ]
+            });
+
+            table.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+                if (oSettings.nTable == document.getElementById("productSelector")) {
+                    var split1 = aData[2].lastIndexOf('>');
+                    var split2 = aData[3].lastIndexOf('>');
+
+                    var data1 = aData[2].substring(split1 + 3);
+                    var data2 = aData[3].substring(split2 + 3);
+
+                    var strokeColumn = parseFloat(data1);
+                    var forceColumn = parseFloat(data2);
+
+                    split1 = aData[0].lastIndexOf('"');
+                    var motor = aData[0].substring(split1+2, split1+5);
+
+                    if (strokeColumn >= str && strokeColumn <= str * 100 && forceColumn >= (force - (force * .2)) && forceColumn <= force * 4)
+                    {
+                        if (type == 0)
+                            return true;
+
+                        else if (motor == "NCM" && type == 1)
+                            return true;
+                    }
+
+                    return false;
+                }
+                return true;
+            });
+
+            $("#oscSelectorForm").change(function () {
+
+                str = parseFloat($("#stroke-ps").val()) || 0;
+                freq = parseFloat($("#frequency-ps").val()) || 0;
+                pay = parseFloat($("#payload-ps").val()) || 0;
+
+                force = Math.pow((freq / 225.08), 2) * str * (pay + 100);
+                force = force.toFixed(2);
+
+                $("#force-ps").val(force + " N");
+                type = 1;
+                table.fnDraw();
+            }).change();
+
+            $("#standardSelectorForm").change(function () {
+
+                str = parseFloat($("#dist-ps").val()) || 0;
+                freq = parseFloat($("#forcer-ps").val()) || 0;
+                pay = parseFloat($("#duty-ps").val()) || 0;
+
+                force = freq / (Math.sqrt(1 / (pay / 100)));
+                force = force.toFixed(2);
+
+                $("#cont-ps").val(force + " N");
+                type = 0;
+                table.fnDraw();
+            }).change();
+
+            function switchToOsc() {
+                $('#oscBox').fadeOut('fast', function () {
+                    $('#standardBox').fadeIn('fast');
+                    $('#standardSelect').addClass('boxSelectOn');
+                    $('#standardSelect').removeClass('boxSelectOff');
+                    $('#oscSelect').addClass('boxSelectOff')
+                    $('#oscSelect').removeClass('boxSelectOn');
+                    location.hash = "standardBox1";
+                });
+            }
+
+            function switchToStandard() {
+                $('#standardBox').fadeOut('fast', function () {
+                    $('#oscBox').fadeIn('fast');
+                    $('#oscSelect').addClass('boxSelectOn')
+                    $('#oscSelect').removeClass('boxSelectOff');
+                    $('#standardSelect').addClass('boxSelectOff');
+                    $('#standardSelect').removeClass('boxSelectOn');
+                    location.hash = "oscBox1";
+                });
+            }
+        </script>
+
+        <br />
+        <br />
+        <br />
+        }
+
+        <div id="technicalDataContain">
+            @Html.Raw(item.html)
+        </div>
+        }
+        }
+

@@ -1,0 +1,14 @@
+﻿@model H2W_mvc.ViewModels.NewsVM
+@using H2W_mvc.ViewModels;
+@{
+    ViewBag.Title = Model.newsrec.Title;
+}
+
+@String.Format("{0:D}", Model.newsrec.PostedDate)
+<h2>@Model.newsrec.Title</h2>
+<div style="height:7px;"></div>
+
+<div id="pageContainer" class="pcBlueLinks">
+    <img src="@Model.newsrec.NewsPicPath" align="left" width="200" />
+    @Html.Raw(Model.newsrec.Content)
+</div>

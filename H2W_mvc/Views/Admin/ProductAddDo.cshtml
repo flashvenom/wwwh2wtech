@@ -1,0 +1,23 @@
+﻿@using H2W_lib;
+
+
+@Html.Partial("_AdminMenu")
+
+<h2>Add a New Product</h2>
+
+<div id="pageContainer">
+    Product add to category #@ViewBag.cat<br /><br />
+    
+    Need to add a row of specs for: 
+    
+    @{
+        //Insert a new record for the product
+        
+        List<tblCategorySpecificSpec> featlist = ViewBag.puke;
+        foreach (var item in featlist)
+        {
+            //Need to loop through the list, and add one row for each specid that is assigned to our new productid
+            @item.CSpecId<text>,</text>
+        }
+    }
+</div>

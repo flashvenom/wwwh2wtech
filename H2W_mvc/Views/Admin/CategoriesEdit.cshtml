@@ -1,0 +1,154 @@
+﻿@model H2W_lib.tblCategory
+
+@Html.Partial("_AdminMenu")
+
+<h2>Edit Category</h2>
+
+<script type="text/javascript" src="../../scripts/jHtmlArea-0.7.5.min.js"></script>
+<link rel="Stylesheet" type="text/css" href="../../content/jHtmlArea.css" />
+<script type="text/javascript">
+    $(function() {
+        $("#DescriptionBot").htmlarea();
+        $("#Description").htmlarea();
+        $("#DescriptionTop").htmlarea();
+    });
+    jQuery.browser = {};
+    jQuery.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+</script>
+<style type="text/css">
+    #DescriptionBot {
+        width: 835px;
+        height: 100px;
+        background-color:#fff;
+    }
+    
+    .tbCls {
+        width: 950px;
+        height: 100px;
+        background-color:#fff;
+    }
+
+    .editor-field ul {
+        padding-left: 0px;
+    }
+
+    .text-box {
+        width: 500px;
+        padding:4px;
+        margin-bottom:8px;
+    }
+
+</style>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblCategory</legend>
+
+        @Html.HiddenFor(model => model.CategoryId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryGroup)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CategoryGroup)
+            @Html.ValidationMessageFor(model => model.CategoryGroup)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryPageUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CategoryPageUrl)
+            @Html.ValidationMessageFor(model => model.CategoryPageUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Featured)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Featured)
+            @Html.ValidationMessageFor(model => model.Featured)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FeaturedSequence)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FeaturedSequence)
+            @Html.ValidationMessageFor(model => model.FeaturedSequence)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FeaturedThumbnail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FeaturedThumbnail)
+            @Html.ValidationMessageFor(model => model.FeaturedThumbnail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductPicPath)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductPicPath)
+            @Html.ValidationMessageFor(model => model.ProductPicPath)
+        </div>
+
+        <div class="editor-label">
+            SEO - Page Title
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.headTitle)
+            @Html.ValidationMessageFor(model => model.headTitle)
+        </div>
+
+        <div class="editor-label">
+            SEO - Page Keywords
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.headKeywords)
+            @Html.ValidationMessageFor(model => model.headKeywords)
+        </div>
+
+        <div class="editor-label">
+            SEO - Page Description
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.headDescription)
+            @Html.ValidationMessageFor(model => model.headDescription)
+        </div>
+
+
+        <br />
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+     
+        
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

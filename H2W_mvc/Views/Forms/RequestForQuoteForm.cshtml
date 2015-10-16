@@ -1,0 +1,105 @@
+﻿@model H2W_mvc.Models.RequestForQuoteForm
+@{
+    ViewBag.Title = "Get a fast, free, no-obligation quote from us";
+}
+
+<h2>Request For Quote</h2>
+
+@using (Html.BeginForm()) {
+@Html.ValidationSummary(true)
+
+<fieldset class="worksheetClass">
+
+    <legend>LinearMotorsWorksheet</legend>
+
+    <div style="height:10px;"></div>
+    <div style="width:450px; float:left;">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.FullName)
+        </div>
+        <div class="display-field">
+             @Html.TextBoxFor( m => m.FullName, new { @class = "worksheetField" })
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.FullName)
+        </div>
+        <br clear="all" />
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Company)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.Company, new { @class = "worksheetField" })
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.Company)
+        </div>
+    </div>
+    
+    <div style="width:450px; float:left;">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Email)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.Email, new { @class = "worksheetField" })
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <br clear="all" />
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Phone)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.Phone, new { @class = "worksheetField" })
+        </div>
+        <div class="display-error">
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+    </div>
+    <br clear="all" />
+    <br />
+
+    <div class="display-label3">
+         @Html.DisplayNameFor(model => model.Quest1)
+    </div>
+    <div class="display-field3">
+        @Html.TextBoxFor(model => model.Quest1, new { @class = "worksheetField3" })
+    </div>
+    <br clear="all" />
+
+    <div class="display-label3">
+         @Html.DisplayNameFor(model => model.Quest2)
+    </div>
+    <div class="display-field3">
+        @Html.TextBoxFor(model => model.Quest2, new { @class = "worksheetField3", @value = ViewBag.catID })
+    </div>
+    <br clear="all" />
+
+    <div class="display-label3">
+         @Html.DisplayNameFor(model => model.Quest3)
+    </div>
+    <div class="display-field3">
+        @Html.TextBoxFor(model => model.Quest3, new { @class = "worksheetField3" })
+    </div>
+    <br clear="all" />
+
+    <br />
+
+    <span style="font-size:12px;">
+    Comments & Special Instructions:
+    </span><div style="clear:both;"></div> 
+    <div class="display-field2">
+        @Html.TextAreaFor(model => model.Comments, new { @class = "worksheetTextArea" })
+    </div>
+    <br clear="all" /><br />
+    <input type="submit" value="Request Quote" />
+
+        
+</fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

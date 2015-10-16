@@ -1,0 +1,234 @@
+﻿@model H2W_lib.tblProduct
+
+@Html.Partial("_AdminMenu")
+
+<h2>Edit Product</h2>
+
+<script type="text/javascript" src="../../scripts/jHtmlArea-0.7.5.min.js"></script>
+<link rel="Stylesheet" type="text/css" href="../../content/jHtmlArea.css" />
+
+<script type="text/javascript">
+    $(function() {
+        $("#DescriptionBot").htmlarea();
+        $("#Description").htmlarea();
+        $("#DescriptionTop").htmlarea();
+    });
+    jQuery.browser = {};
+    jQuery.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+    jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+
+    $(function () {
+        //Uploadify
+        $('#uploadifySystem').uploadify({
+            langFile: '/uploadify/uploadifyLang_en.js',
+            swf: '/uploadify/uploadify.swf',
+            uploader: '../../Upload.ashx',
+            multi: false,
+            auto: true,
+            postData: { myfolder: '/Images/Thumbnails/' },
+            fileTypeExts: '*.jpg;*.jpeg;*.pdf;*.tiff;',
+            buttonText: 'SELECT FILE',
+            cancelImage: '~/uploadify/uploadify-cancel.png',
+            onUploadSuccess: function (file, data, response) {
+                $('#ThumbnailPath').val("/Images/Thumbnails/" + data);
+            }
+        });
+        $('#uploadifySystem2').uploadify({
+            langFile: '/uploadify/uploadifyLang_en.js',
+            swf: '/uploadify/uploadify.swf',
+            uploader: '../../Upload.ashx',
+            multi: false,
+            auto: true,
+            postData: { myfolder: '/Images/ProductPics/' },
+            fileTypeExts: '*.jpg;*.jpeg;*.pdf;*.tiff;',
+            buttonText: 'SELECT FILE',
+            cancelImage: '~/uploadify/uploadify-cancel.png',
+            onUploadSuccess: function (file, data, response) {
+                $('#ProductPicPath').val("/images/ProductPics/" + data);
+            }
+        });
+        $('#uploadifySystem3').uploadify({
+            langFile: '/uploadify/uploadifyLang_en.js',
+            swf: '/uploadify/uploadify.swf',
+            uploader: '../../Upload.ashx',
+            multi: false,
+            auto: true,
+            postData: { myfolder: '/pdf/' },
+            fileTypeExts: '*.jpg;*.jpeg;*.pdf;*.tiff;',
+            buttonText: 'SELECT FILE',
+            cancelImage: '~/uploadify/uploadify-cancel.png',
+            onUploadSuccess: function (file, data, response) {
+                $('#PDFDoc').val("/pdf/" + data);
+            }
+        });
+    });
+</script>
+<style type="text/css">
+    #DescriptionBot {
+        width: 835px;
+        height: 100px;
+        background-color:#fff;
+    }
+    
+    .tbCls {
+        width: 950px;
+        height: 100px;
+        background-color:#fff;
+    }
+
+    .editor-field ul {
+        padding-left: 0px;
+    }
+
+    .text-box {
+        width: 500px;
+        padding:4px;
+        margin-bottom:8px;
+    }
+
+</style>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblText</legend>
+
+        @Html.HiddenFor(model => model.ProductId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductNo)
+            @Html.ValidationMessageFor(model => model.ProductNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ThumbnailPath)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ThumbnailPath)<span style="font-size:10px;">Recommended image dimensions: 80px x 57px</span>
+            
+            @Html.ValidationMessageFor(model => model.ThumbnailPath)
+            <div id="uploadifySystem"></div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductPicPath)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductPicPath)<span style="font-size:10px;">Recommended image dimensions: 480px x 359px</span>
+            @Html.ValidationMessageFor(model => model.ProductPicPath)
+            <div id="uploadifySystem2"></div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PDFDoc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PDFDoc)
+            @Html.ValidationMessageFor(model => model.PDFDoc)
+            <div id="uploadifySystem3"></div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+        <div style="height:8px;"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuickShip)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.QuickShip)<span style="font-size:10px;">(Only appears on Voice Coil Linear Actuators page)</span>
+            @Html.ValidationMessageFor(model => model.QuickShip)
+        </div>
+        <div style="height:8px;"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescriptionTop)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.DescriptionTop, new { @class = "tbCls" })
+            @Html.ValidationMessageFor(model => model.DescriptionTop)
+        </div>
+        <div style="height:8px;"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescriptionBot)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.DescriptionBot, new { @class = "tbCls" })
+            @Html.ValidationMessageFor(model => model.DescriptionBot)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.motorProductId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.motorProductId)
+            @Html.ValidationMessageFor(model => model.motorProductId)
+        </div>
+     
+        @Html.HiddenFor(model => model.CategoryId)
+        @Html.HiddenFor(model => model.ProductId)
+        <br />
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+     
+        <table border="0" class="productSpecTable">
+            <tr>
+            <th>Specification Name</th>
+            <th>Spec 1</th>
+            <th>Spec 2</th>
+            <th>Edit</th>
+            </tr>
+        @foreach (var item in Model.tblProductSpecs) {
+            { 
+                <tr>
+                    <td style="text-align:left;">
+                        @item.tblCategorySpecificSpec.SpecName
+                    </td>
+                        <td>
+                        @item.SpecValue1 @item.tblCategorySpecificSpec.Units1
+                        </td>
+                        <td>
+                            @item.SpecValue2 @item.tblCategorySpecificSpec.Units2
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "SpecEdit", new { id=item.PSpecId })
+                        </td>
+                </tr>
+            }
+        }
+        </table>
+        <span style="font-size:12px;">
+        NOTES: Leave Spec2 blank to "combine" the cells on the front-end page. You can edit the spec name, and the units of measurement on the @Html.ActionLink("specifications", "Specifications", "Admin") admin tool.</span>
+         <br /><br />
+        
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="/uploadify/swfobject.js"></script>
+    <script type="text/javascript" src="/uploadify/jquery.uploadify.js"></script>
+}
+

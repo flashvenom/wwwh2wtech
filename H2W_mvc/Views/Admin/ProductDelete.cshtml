@@ -1,0 +1,41 @@
+﻿@model H2W_lib.tblProduct
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this product?</h3>
+<fieldset>
+    <legend>tblText</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductNo)
+    </div>
+
+</fieldset>
+
+SpecRecordsToDelete:
+@foreach (var item in Model.tblProductSpecs) {
+    { 
+        @item.PSpecId
+    }
+}
+
+@using (Html.BeginForm()) {
+    <p>
+        @Html.ActionLink("Confirm Delete", "ProductDeleteConfirmed", new { id = Model.ProductId }) |
+        @Html.ActionLink("Back to List", "ProductList")
+    </p>
+}

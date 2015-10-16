@@ -1,0 +1,13 @@
+﻿@using H2W_lib;
+@{
+    List<tblNewsArticle> newslist = ViewBag.newslist;
+}
+<article>
+    @foreach (var item in newslist)
+    {
+   
+        @item.Title<br />
+        @item.PostedDate<br /><br />
+    
+    }
+</article>

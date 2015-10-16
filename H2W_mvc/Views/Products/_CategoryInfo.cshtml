@@ -1,0 +1,32 @@
+﻿@model  H2W_mvc.ViewModels.CategoryVM
+
+<div id="quickViewBox" class="catImageSub">
+<img id="categoryPicImage" src="@Model.catrec.ProductPicPath" /><br />
+    @Model.catrec.Description
+    <table border="0" width="100%">
+        <tr>
+            <td>
+                <div id="divBtnFullList" class="catPicButtons" onclick="show('specifications')">
+                    <span style="font-size:21px;">Full Product List</span><br />
+                    Click here
+                </div>
+            </td>
+            <td>
+                <div class="catPicButtons" onclick="window.location='../Forms/RequestForQuoteForm?cat=@Model.catrec.Name'">
+                    <span style="font-size:21px;">Request a Quote</span><br />
+                    Click here
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+
+    
+</div>
+<div id="productInfoContain">
+    @foreach (var item in Model.textAreas) {
+        if (item.section == "productinfo"){
+            @Html.Raw(item.html)
+        }
+    }
+</div>
